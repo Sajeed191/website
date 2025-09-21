@@ -15,18 +15,11 @@
                     <a href="#home" class="nav__logo">ProBusiness Solutions</a>
                 </div>
                 <ul class="nav__menu" id="navMenu">
-                    <li class="nav__item">
-                        <a href="#home" class="nav__link">Home</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#about" class="nav__link">About</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#services" class="nav__link">Services</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#contact" class="nav__link">Contact</a>
-                    </li>
+                    <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+                    <li class="nav__item"><a href="#products" class="nav__link">Products</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
                 </ul>
                 <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
                     <span class="nav__toggle-line"></span>
@@ -96,7 +89,7 @@
                     <p>Unlock the power of your data with advanced analytics and reporting solutions.</p>
                 </div>
                 <div class="service__card">
-                    <span class="service__icon">⚙</span>
+                    <span class="service__icon">⚙️</span>
                     <h3>Project Management</h3>
                     <p>Streamline your projects with proven methodologies and expert oversight.</p>
                 </div>
@@ -114,26 +107,39 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2>What Sets Us Apart</h2>
-            <div class="features__grid">
-                <div class="feature__item">
-                    <h3>Data-Driven Approach</h3>
-                    <p>Every recommendation is backed by thorough analysis and market research.</p>
-                </div>
-                <div class="feature__item">
-                    <h3>24/7 Support</h3>
-                    <p>Our dedicated support team is available around the clock for your needs.</p>
-                </div>
-                <div class="feature__item">
-                    <h3>Scalable Solutions</h3>
-                    <p>Our flexible solutions grow with your business and adapt to your success.</p>
-                </div>
-            </div>
+    <!-- Products Section -->
+    <section id="products">
+      <div class="container">
+        <h2>Products</h2>
+        <div class="products__grid">
+          <div class="product__card" data-id="1">
+            <img src="product1.jpg" alt="Product 1" class="product__img">
+            <h3>Business Planner</h3>
+            <p>Efficient planning tool for professionals.</p>
+            <span class="product__price">$25</span>
+            <button class="btn btn--cart" onclick="addToCart(1)">Add to Cart</button>
+          </div>
+          <div class="product__card" data-id="2">
+            <img src="product2.jpg" alt="Product 2" class="product__img">
+            <h3>Digital Analytics Suite</h3>
+            <p>Analyse your business data like experts.</p>
+            <span class="product__price">$49</span>
+            <button class="btn btn--cart" onclick="addToCart(2)">Add to Cart</button>
+          </div>
         </div>
+      </div>
     </section>
+
+    <!-- Cart Section -->
+    <div class="cart" id="cart">
+      <h3>Your Cart</h3>
+      <ul id="cartItems"></ul>
+      <div class="cart__actions">
+        <span id="cartTotal">Total: $0</span>
+        <button class="btn btn--primary" onclick="purchaseCart()">Purchase</button>
+        <button class="btn btn--secondary" onclick="clearCart()">Clear Cart</button>
+      </div>
+    </div>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
@@ -177,3 +183,4 @@
     <script src="app.js"></script>
 </body>
 </html>
+ 
