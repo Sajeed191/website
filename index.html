@@ -1,112 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Styled Store | New Arrivals & Categories</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Premium Clothing Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: #fafafd;
+      font-family: 'Inter', Arial, sans-serif;
+      background: #f6f8fa;
       color: #222;
     }
     header {
       background: #fff;
-      border-bottom: 1px solid #e5e5e5;
-      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0.75rem 1.2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 2px 7px rgba(34,34,34,0.03);
     }
     .logo {
-      font-weight: bold;
+      font-weight: 700;
       font-size: 1.4rem;
-      color: #de2148;
+      color: #E94057;
       text-decoration: none;
+      letter-spacing: 0.04em;
       display: flex;
       align-items: center;
+      gap: 0.5rem;
     }
     nav {
       display: flex;
-      gap: 1.2rem;
+      gap: 1.5rem;
       align-items: center;
-      font-size: 1.15rem;
+      font-size: 1.08rem;
     }
     nav a {
-      color: #222;
+      color: #353535;
       text-decoration: none;
       font-weight: 600;
-      padding: 0.2rem 0.7rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 7px;
+      transition: background 0.16s, color 0.16s;
     }
     nav a:hover {
-      color: #de2148;
+      background: #f8e9ee;
+      color: #E94057;
     }
     .nav-icons {
       display: flex;
-      gap: 1rem;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.26rem;
+    }
+    .nav-icons a {
+      color: #777;
+      background: #f3f3f3;
+      border-radius: 50%;
+      width: 2.4rem;
+      height: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background 0.18s, color 0.16s;
+    }
+    .nav-icons a:hover {
+      background: #E94057;
+      color: white;
     }
     .container {
-      max-width: 1100px;
+      max-width: 1130px;
       margin: 0 auto;
-      padding: 1rem 0.5rem;
+      padding: 1.6rem 0.6rem;
     }
     h2 {
       font-size: 1.3rem;
-      margin: 2rem 0 1rem 0;
-      letter-spacing: 0.04em;
-      color: #222;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #353535;
+      margin: 2rem 0 1.2rem 0;
       font-family: inherit;
     }
-    /* New Arrivals Carousel */
+    /* Premium Carousel */
     .carousel {
       display: flex;
       overflow-x: auto;
-      gap: 1.2rem;
+      gap: 1.3rem;
       scroll-snap-type: x mandatory;
-      padding-bottom: 1rem;
+      padding-bottom: 1.2rem;
     }
     .carousel::-webkit-scrollbar { display: none; }
     .carousel-card {
-      min-width: 260px;
-      max-width: 285px;
+      min-width: 288px;
+      max-width: 312px;
       scroll-snap-align: center;
-      background: #fff;
-      border-radius: 13px;
-      box-shadow: 0 2px 14px rgba(60,60,60,0.07);
+      background: linear-gradient(136deg, #fff 75%, #f0f2f8 100%);
+      border-radius: 15px;
+      box-shadow: 0 5px 24px 0 rgba(60,60,60,0.09);
       overflow: hidden;
-      padding: 1rem 1rem 0.5rem 1rem;
+      padding: 1rem 1rem 0.7rem 1rem;
       flex: 0 0 auto;
       text-align: left;
+      position: relative;
+      transition: box-shadow 0.22s;
+    }
+    .carousel-card:hover {
+      box-shadow: 0 14px 42px rgba(60,34,54,0.12);
+      transform: translateY(-2px) scale(1.022);
     }
     .carousel-card img {
       display: block;
       width: 100%;
       aspect-ratio: 4/5;
       object-fit: cover;
-      margin-bottom: 0.8rem;
-      border-radius: 10px;
-      background: #eee;
-    }
-    .carousel-card .subtitle {
-      color: #999;
-      font-size: 0.93rem;
-      margin-bottom: 0.15rem;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      background: #e2eaf1;
+      box-shadow: 0 2px 12px #e2e8f0;
     }
     .carousel-card .title {
       font-weight: 600;
-      margin-bottom: 0.05rem;
-      font-size: 1.02rem;
+      font-size: 1.08rem;
+      margin-bottom: 0.09rem;
+    }
+    .carousel-card .subtitle {
+      color: #7a7a7a;
+      font-size: 0.98rem;
+      margin-bottom: 0.14rem;
     }
     .carousel-card .price {
-      color: #de2148;
+      color: #E94057;
       font-weight: 700;
-      margin-top: 1px;
-      margin-bottom: 3px;
-      font-size: 1.08rem;
+      margin-top: 2px;
+      font-size: 1.13rem;
+      letter-spacing: 0.01em;
+    }
+    .carousel-card .shop-btn {
+      position: absolute;
+      bottom: 1.05rem;
+      right: 1.1rem;
+      background: #E94057;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 25px;
+      padding: 0.45rem 1.3rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 16px #e9405736;
+      transition: background 0.16s, box-shadow 0.16s;
+    }
+    .carousel-card .shop-btn:hover {
+      background: #bc0e34;
+      box-shadow: 0 4px 22px #e940579c;
     }
     /* Dots */
     .carousel-dots {
@@ -118,52 +170,59 @@
     .dot {
       width: 9px;
       height: 9px;
-      background: #ddd;
+      background: #e2e8f0;
       border-radius: 50%;
       transition: background 0.2s;
     }
-    .dot.active { background: #222; }
-    /* Categories */
+    .dot.active { background: #E94057; }
+    /* Premium Categories */
     .categories-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1.2rem;
-      margin-top: 1.3rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.3rem;
+      margin-top: 1.4rem;
     }
     .category-card {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(60,60,60,0.07);
+      background: linear-gradient(120deg,#fff 60%, #f0f2f8 100%);
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(34,34,34,0.04);
       overflow: hidden;
       text-align: center;
-      padding-bottom: 0.8rem;
+      padding-bottom: 1rem;
+      transition: box-shadow 0.18s, transform 0.16s;
+    }
+    .category-card:hover {
+      box-shadow: 0 10px 20px rgba(60,34,54,0.10);
+      transform: scale(1.04) translateY(-3px);
     }
     .category-card img {
       width: 100%;
       aspect-ratio: 4/4.2;
       object-fit: cover;
-      background: #eee;
-      margin-bottom: 0.6rem;
-      border-radius: 8px 8px 0 0;
+      background: #e9e9e9;
+      margin-bottom: 0.7rem;
+      border-radius: 9px 9px 0 0;
+      box-shadow: 0 2px 10px #e2e8f082;
     }
-    .category-card .category-label {
+    .category-label {
       font-weight: 600;
       color: #444;
-      font-size: 1rem;
+      font-size: 1.07rem;
       letter-spacing: 0.01em;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.27rem;
+      margin-top: 0.10rem;
     }
-    @media (max-width: 620px) {
-      .carousel-card, .category-card { min-width: 80vw; }
-      .container { padding: 1rem 0.2rem; }
-      header { padding: 0.6rem 0.5rem; }
-      h2 { font-size: 1.13rem; }
+    @media screen and (max-width: 700px) {
+      .carousel-card, .category-card { min-width: 85vw; }
+      .container { padding: 1.2rem 0.13rem; }
+      header { padding: 0.5rem 0.5rem; }
+      h2 { font-size: 1.12rem; }
     }
   </style>
 </head>
 <body>
   <header>
-    <a href="#" class="logo">Styled Store</a>
+    <a href="#" class="logo">PremiumStore</a>
     <nav>
       <a href="#">Home</a>
       <a href="#">Shop</a>
@@ -179,44 +238,43 @@
   <main class="container">
     <h2>NEW ARRIVALS</h2>
     <div class="carousel">
-      <!-- Product 1 -->
       <div class="carousel-card">
-        <img src="blog15jpg" alt="Cottonnen Pristine Shirt"/>
+        <img src="https://via.placeholder.com/288x350.png?text=White+Linen+Shirt" alt="Cotton Linen Pristine Shirt"/>
         <div class="title">Cotton Linen: Pristine</div>
-        <div src="c" Linen Shirts</div>
+        <div class="subtitle">Cotton Linen Shirts</div>
         <div class="price">&#8377; 1499</div>
+        <button class="shop-btn">Shop Now</button>
       </div>
-      <!-- Product 2 -->
       <div class="carousel-card">
-        <img src="https://via.placeholder.com/280x350.png?text=Black+Shirt" alt="Cotton Linen Soft Black Shirt"/>
+        <img src="https://via.placeholder.com/288x350.png?text=Black+Linen+Shirt" alt="Cotton Linen Soft Black Shirt"/>
         <div class="title">Cotton Linen: Soft Black</div>
         <div class="subtitle">Cotton Linen Shirts</div>
         <div class="price">&#8377; 1499</div>
+        <button class="shop-btn">Shop Now</button>
       </div>
-      <!-- Add more products as desired -->
+      <!-- Add more arrival products here -->
     </div>
     <div class="carousel-dots">
       <span class="dot active"></span>
       <span class="dot"></span>
-      <!-- Add more dots if more products -->
     </div>
 
     <h2>CATEGORIES</h2>
     <div class="categories-grid">
       <div class="category-card">
-        <img src="https://via.placeholder.com/180x180.png?text=White+Shirt"irt" alt="T-Shirts"/>
+        <img src="https://via.placeholder.com/180x180.png?text=T-Shirt" alt="T-Shirts"/>
         <div class="category-label">T-SHIRTS</div>
       </div>
       <div class="category-card">
-        <img src="https://via.placeholder.com/180x180.png?text=Bottoms" alt="All Bottoms"/>
+        <img src="https://via.placeholder.com/180x180.png?text=BOTTOMS" alt="All Bottoms"/>
         <div class="category-label">ALL BOTTOMS</div>
       </div>
       <div class="category-card">
-        <img src="https://via.placeholder.com/180x180.png?text=Denim" alt="Denims"/>
+        <img src="https://via.placeholder.com/180x180.png?text=DENIM" alt="Denims"/>
         <div class="category-label">DENIMS</div>
       </div>
       <div class="category-card">
-        <img src="https://via.placeholder.com/180x180.png?text=Shirts" alt="Shirts"/>
+        <img src="https://via.placeholder.com/180x180.png?text=SHIRTS" alt="Shirts"/>
         <div class="category-label">SHIRTS</div>
       </div>
     </div>
