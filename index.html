@@ -3,418 +3,224 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Clothing Store - Shop the Latest Fashion</title>
+  <title>Styled Store | New Arrivals & Categories</title>
   <style>
-    :root {
-      --color-primary: #1a365d;
-      --color-secondary: #4299e1;
-      --color-accent: #f7fafc;
-      --color-bg: #ffffff;
-      --color-text: #2d3748;
-    }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--color-bg);
-      color: var(--color-text);
-      line-height: 1.5;
-    }
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 16px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #fafafd;
+      color: #222;
     }
     header {
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       position: sticky;
       top: 0;
-      background: var(--color-primary);
-      color: white;
-      padding: 1rem 0;
-      z-index: 1000;
+      z-index: 100;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: #de2148;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
     }
     nav {
       display: flex;
-      justify-content: space-between;
+      gap: 1.2rem;
       align-items: center;
+      font-size: 1.15rem;
     }
-    nav a.logo {
-      color: white;
-      font-weight: bold;
-      font-size: 1.5rem;
-      text-decoration: none;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-      margin: 0;
-      padding: 0;
-    }
-    nav ul li a {
-      color: white;
+    nav a {
+      color: #222;
       text-decoration: none;
       font-weight: 600;
+      padding: 0.2rem 0.7rem;
     }
-    nav ul li a:hover {
-      color: var(--color-secondary);
+    nav a:hover {
+      color: #de2148;
     }
-    /* Hero */
-    .hero {
-      background: linear-gradient(90deg, var(--color-primary) 60%, var(--color-secondary) 100%);
-      color: white;
-      text-align: center;
-      padding: 4rem 1rem;
+    .nav-icons {
+      display: flex;
+      gap: 1rem;
     }
-    .hero h1 {
-      font-size: 2.75rem;
-      margin-bottom: 0.5rem;
-    }
-    .hero p {
-      font-size: 1.25rem;
-      margin-bottom: 1.5rem;
-    }
-    .btn-primary {
-      background: var(--color-secondary);
-      color: var(--color-primary);
-      border: none;
-      padding: 0.75rem 2rem;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      font-weight: bold;
-      margin: 0 0.5rem;
-      transition: background 0.3s;
-    }
-    .btn-primary:hover {
-      background: #367ecc;
-      color: white;
-    }
-    /* Products */
-    #products {
-      padding: 3rem 1rem;
-      background: var(--color-accent);
-      text-align: center;
-    }
-    #products h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: var(--color-primary);
-    }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-      gap: 2rem;
+    .container {
       max-width: 1100px;
-      margin: auto;
+      margin: 0 auto;
+      padding: 1rem 0.5rem;
     }
-    .product-card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 6px 20px rgba(26,54,93,0.1);
-      padding: 1rem;
+    h2 {
+      font-size: 1.3rem;
+      margin: 2rem 0 1rem 0;
+      letter-spacing: 0.04em;
+      color: #222;
+      font-family: inherit;
+    }
+    /* New Arrivals Carousel */
+    .carousel {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: box-shadow 0.3s;
+      overflow-x: auto;
+      gap: 1.2rem;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
     }
-    .product-card:hover {
-      box-shadow: 0 8px 32px rgba(26,54,93,0.2);
+    .carousel::-webkit-scrollbar { display: none; }
+    .carousel-card {
+      min-width: 260px;
+      max-width: 285px;
+      scroll-snap-align: center;
+      background: #fff;
+      border-radius: 13px;
+      box-shadow: 0 2px 14px rgba(60,60,60,0.07);
+      overflow: hidden;
+      padding: 1rem 1rem 0.5rem 1rem;
+      flex: 0 0 auto;
+      text-align: left;
     }
-    .product-card img {
-      max-width: 180px;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-    .product-card h3 {
-      margin: 0.5rem 0;
-      color: var(--color-primary);
-    }
-    .product-card p {
-      font-size: 0.9rem;
-      color: #555;
-      flex-grow: 1;
-    }
-    .product-price {
-      font-weight: 700;
-      color: var(--color-secondary);
-      margin: 1rem 0;
-      font-size: 1.2rem;
-    }
-    .btn-cart {
-      background: var(--color-primary);
-      color: white;
-      border: none;
-      padding: 0.5rem 1.25rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .btn-cart:hover {
-      background: #154272;
-    }
-    /* Cart */
-    #cart {
-      position: fixed;
-      right: 1rem;
-      top: 5rem;
-      background: white;
-      width: 320px;
-      max-height: 80vh;
-      overflow-y: auto;
+    .carousel-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      margin-bottom: 0.8rem;
       border-radius: 10px;
-      box-shadow: 0 6px 32px rgba(26,54,93,0.3);
-      padding: 1rem;
-      z-index: 1100;
-      font-family: Arial, sans-serif;
+      background: #eee;
     }
-    #cart h3 {
-      margin-top: 0;
-      color: var(--color-primary);
-      text-align: center;
+    .carousel-card .subtitle {
+      color: #999;
+      font-size: 0.93rem;
+      margin-bottom: 0.15rem;
     }
-    #cart ul {
-      list-style: none;
-      padding: 0;
-      margin: 1rem 0;
-      max-height: 40vh;
-      overflow-y: auto;
-    }
-    #cart li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #eee;
-    }
-    #cart li button {
-      background: var(--color-secondary);
-      border: none;
-      color: white;
-      border-radius: 4px;
-      padding: 0.25rem 0.75rem;
-      cursor: pointer;
-      font-size: 0.8rem;
-    }
-    #cart .cart-total {
-      text-align: right;
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      color: var(--color-primary);
-    }
-    #cart .cart-actions button {
-      width: 48%;
-      padding: 0.75rem 0;
-      border-radius: 6px;
-      border: none;
+    .carousel-card .title {
       font-weight: 600;
-      cursor: pointer;
+      margin-bottom: 0.05rem;
+      font-size: 1.02rem;
     }
-    #cart .btn-purchase {
-      background: var(--color-primary);
-      color: white;
+    .carousel-card .price {
+      color: #de2148;
+      font-weight: 700;
+      margin-top: 1px;
+      margin-bottom: 3px;
+      font-size: 1.08rem;
     }
-    #cart .btn-clear {
-      background: var(--color-secondary);
-      color: white;
-    }
-    #cart .cart-actions {
+    /* Dots */
+    .carousel-dots {
       display: flex;
-      justify-content: space-between;
-      gap: 1%;
+      justify-content: center;
+      gap: 0.3rem;
+      margin: 0.2rem 0 1.2rem 0;
     }
-    /* Contact & Footer */
-    #contact {
-      padding: 3rem 1rem;
+    .dot {
+      width: 9px;
+      height: 9px;
+      background: #ddd;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .dot.active { background: #222; }
+    /* Categories */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.3rem;
+    }
+    .category-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(60,60,60,0.07);
+      overflow: hidden;
       text-align: center;
+      padding-bottom: 0.8rem;
     }
-    footer {
-      background: var(--color-primary);
-      color: white;
-      padding: 1rem;
-      text-align: center;
+    .category-card img {
+      width: 100%;
+      aspect-ratio: 4/4.2;
+      object-fit: cover;
+      background: #eee;
+      margin-bottom: 0.6rem;
+      border-radius: 8px 8px 0 0;
     }
-    /* Responsive menu */
-    @media(max-width: 768px) {
-      nav ul {
-        display: none;
-      }
-      nav .nav-toggle {
-        display: block;
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: white;
-        font-size: 1.5rem;
-      }
-      #cart {
-        width: 95vw;
-        left: 2.5vw;
-        right: 2.5vw;
-        top: 4rem;
-        max-height: 60vh;
-      }
+    .category-card .category-label {
+      font-weight: 600;
+      color: #444;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.2rem;
+    }
+    @media (max-width: 620px) {
+      .carousel-card, .category-card { min-width: 80vw; }
+      .container { padding: 1rem 0.2rem; }
+      header { padding: 0.6rem 0.5rem; }
+      h2 { font-size: 1.13rem; }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <div class="container">
-      <nav>
-        <a href="#home" class="logo">Clothing Store</a>
-        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">☰</button>
-        <ul id="nav-menu">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#products">Shop</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+    <a href="#" class="logo">Styled Store</a>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">Categories</a>
+      <a href="#">Account</a>
+      <span class="nav-icons">
+        <a href="#" title="Search">&#128269;</a>
+        <a href="#" title="Wishlist">&#9825;</a>
+        <a href="#" title="Cart">&#128722;</a>
+      </span>
+    </nav>
   </header>
-
-  <section class="hero" id="home">
-    <div class="container">
-      <h1>Shop Trendy Clothes Online</h1>
-      <p>Quality fashion apparel delivered to your doorstep.</p>
-      <button class="btn-primary" onclick="scrollToSection('#products')">Shop Now</button>
+  <main class="container">
+    <h2>NEW ARRIVALS</h2>
+    <div class="carousel">
+      <!-- Product 1 -->
+      <div class="carousel-card">
+        <img src="https://via.placeholder.com/280x350.png?text=White+Shirt" alt="Cotton Linen Pristine Shirt"/>
+        <div class="title">Cotton Linen: Pristine</div>
+        <div class="subtitle">Cotton Linen Shirts</div>
+        <div class="price">&#8377; 1499</div>
+      </div>
+      <!-- Product 2 -->
+      <div class="carousel-card">
+        <img src="https://via.placeholder.com/280x350.png?text=Black+Shirt" alt="Cotton Linen Soft Black Shirt"/>
+        <div class="title">Cotton Linen: Soft Black</div>
+        <div class="subtitle">Cotton Linen Shirts</div>
+        <div class="price">&#8377; 1499</div>
+      </div>
+      <!-- Add more products as desired -->
     </div>
-  </section>
-
-  <section id="products" class="container">
-    <h2>Our Products</h2>
-    <div class="products-grid" id="productsGrid">
-      <!-- Products added by JS -->
+    <div class="carousel-dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <!-- Add more dots if more products -->
     </div>
-  </section>
 
-  <div id="cart" hidden>
-    <h3>Your Cart</h3>
-    <ul id="cartItems"></ul>
-    <div class="cart-total" id="cartTotal">Total: $0</div>
-    <div class="cart-actions">
-      <button class="btn-purchase" onclick="purchaseCart()">Purchase</button>
-      <button class="btn-clear" onclick="clearCart()">Clear Cart</button>
+    <h2>CATEGORIES</h2>
+    <div class="categories-grid">
+      <div class="category-card">
+        <img src="https://via.placeholder.com/180x180.png?text=T-Shirt" alt="T-Shirts"/>
+        <div class="category-label">T-SHIRTS</div>
+      </div>
+      <div class="category-card">
+        <img src="https://via.placeholder.com/180x180.png?text=Bottoms" alt="All Bottoms"/>
+        <div class="category-label">ALL BOTTOMS</div>
+      </div>
+      <div class="category-card">
+        <img src="https://via.placeholder.com/180x180.png?text=Denim" alt="Denims"/>
+        <div class="category-label">DENIMS</div>
+      </div>
+      <div class="category-card">
+        <img src="https://via.placeholder.com/180x180.png?text=Shirts" alt="Shirts"/>
+        <div class="category-label">SHIRTS</div>
+      </div>
     </div>
-  </div>
-
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: support@clothingstore.com | Phone: +1 555-987-6543</p>
-  </section>
-
-  <footer>
-    &copy; 2025 Clothing Store. All rights reserved.
-  </footer>
-
-  <script>
-    // Responsive menu toggle
-    function toggleMenu() {
-      const navMenu = document.getElementById('nav-menu');
-      navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-    }
-    function scrollToSection(id) {
-      document.querySelector(id).scrollIntoView({behavior: 'smooth'});
-    }
-
-    // Products Data
-    const products = [
-      { id: 1, name: "Classic White Tee", description: "Comfortable 100% cotton white T-shirt.", price: 19.99, img: "https://via.placeholder.com/180x220?text=White+Tee" },
-      { id: 2, name: "Denim Jacket", description: "Stylish and durable denim jacket.", price: 79.99, img: "https://via.placeholder.com/180x220?text=Denim+Jacket" },
-      { id: 3, name: "Casual Hoodie", description: "Cozy hoodie for chilly days.", price: 49.99, img: "https://via.placeholder.com/180x220?text=Hoodie" },
-      { id: 4, name: "Summer Dress", description: "Light and breezy summer dress.", price: 59.99, img: "https://via.placeholder.com/180x220?text=Summer+Dress" }
-    ];
-
-    const productsGrid = document.getElementById('productsGrid');
-    const cartDiv = document.getElementById('cart');
-    const cartItemsUl = document.getElementById('cartItems');
-    const cartTotalDiv = document.getElementById('cartTotal');
-
-    // Render Products
-    function renderProducts() {
-      products.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-          <img src="${product.img}" alt="${product.name}" />
-          <h3>${product.name}</h3>
-          <p>${product.description}</p>
-          <div class="product-price">$${product.price.toFixed(2)}</div>
-          <button class="btn-cart" onclick="addToCart(${product.id})">Add to Cart</button>
-        `;
-        productsGrid.appendChild(card);
-      });
-    }
-
-    // Cart Logic
-    let cart = [];
-
-    function addToCart(productId) {
-      const product = products.find(p => p.id === productId);
-      cart.push(product);
-      alert(`${product.name} added to cart.`);
-      updateCartUI();
-    }
-
-    function updateCartUI() {
-      cartDiv.hidden = cart.length === 0;
-      cartItemsUl.innerHTML = '';
-      const productCount = {};
-
-      // Calculate quantities for each product
-      cart.forEach(item => {
-        productCount[item.id] = (productCount[item.id] || 0) + 1;
-      });
-
-      Object.entries(productCount).forEach(([id, qty]) => {
-        const prod = products.find(p => p.id === +id);
-        const li = document.createElement('li');
-        li.textContent = `${prod.name} x${qty} - $${(prod.price * qty).toFixed(2)}`;
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remove';
-        removeBtn.onclick = () => removeFromCart(+id);
-        li.appendChild(removeBtn);
-        cartItemsUl.appendChild(li);
-      });
-
-      const total = cart.reduce((acc, p) => acc + p.price, 0);
-      cartTotalDiv.textContent = 'Total: $' + total.toFixed(2);
-    }
-
-    function removeFromCart(productId) {
-      const idx = cart.findIndex(p => p.id === productId);
-      if (idx > -1) {
-        cart.splice(idx, 1);
-        updateCartUI();
-      }
-    }
-
-    function clearCart() {
-      if(confirm('Clear all items from cart?')) {
-        cart = [];
-        updateCartUI();
-      }
-    }
-
-    // Simulate purchase - replace with actual payment integration as needed
-    function purchaseCart() {
-      if(cart.length === 0) {
-        alert('Your cart is empty!');
-        return;
-      }
-      const confirmPurchase = confirm(`Confirm purchase of ${cart.length} items for total $${cart.reduce((a,p)=>a+p.price, 0).toFixed(2)}?`);
-      if(confirmPurchase) {
-        alert('Thank you for your purchase!');
-        cart = [];
-        updateCartUI();
-      }
-    }
-
-    // Initialize
-    renderProducts();
-    updateCartUI();
-  </script>
+  </main>
 </body>
 </html>
  
