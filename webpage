@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProBusiness Solutions - Your Partner in Growth</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav__brand">
+                    <a href="#home" class="nav__logo">ProBusiness Solutions</a>
+                </div>
+                <ul class="nav__menu" id="navMenu">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#services" class="nav__link">Services</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">Contact</a>
+                    </li>
+                </ul>
+                <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span class="nav__toggle-line"></span>
+                    <span class="nav__toggle-line"></span>
+                    <span class="nav__toggle-line"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero__content">
+                <h1 class="hero__title">Empowering Your Business Success</h1>
+                <p class="hero__subtitle">We deliver innovative solutions that drive growth and transform your business for the digital age</p>
+                <div class="hero__actions">
+                    <button class="btn btn--primary btn--lg">Get Started</button>
+                    <button class="btn btn--secondary btn--lg">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>Why Choose Us</h2>
+            <div class="about__grid">
+                <div class="about__card">
+                    <span class="about__icon">👥</span>
+                    <h3>Expert Team</h3>
+                    <p>Our experienced professionals deliver exceptional results with deep industry knowledge.</p>
+                </div>
+                <div class="about__card">
+                    <span class="about__icon">💡</span>
+                    <h3>Innovative Solutions</h3>
+                    <p>Cutting-edge strategies tailored to your business needs, leveraging latest technologies.</p>
+                </div>
+                <div class="about__card">
+                    <span class="about__icon">📈</span>
+                    <h3>Proven Results</h3>
+                    <p>Track record of success across diverse industries with measurable outcomes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services__grid">
+                <div class="service__card">
+                    <span class="service__icon">🎯</span>
+                    <h3>Strategic Consulting</h3>
+                    <p>Transform your business strategy with data-driven insights and expert guidance.</p>
+                </div>
+                <div class="service__card">
+                    <span class="service__icon">🚀</span>
+                    <h3>Digital Transformation</h3>
+                    <p>Modernize your operations with cutting-edge digital solutions and processes.</p>
+                </div>
+                <div class="service__card">
+                    <span class="service__icon">📊</span>
+                    <h3>Business Analytics</h3>
+                    <p>Unlock the power of your data with advanced analytics and reporting solutions.</p>
+                </div>
+                <div class="service__card">
+                    <span class="service__icon">⚙</span>
+                    <h3>Project Management</h3>
+                    <p>Streamline your projects with proven methodologies and expert oversight.</p>
+                </div>
+                <div class="service__card">
+                    <span class="service__icon">💻</span>
+                    <h3>Technology Solutions</h3>
+                    <p>Custom technology implementations that drive efficiency and innovation.</p>
+                </div>
+                <div class="service__card">
+                    <span class="service__icon">🔍</span>
+                    <h3>Market Research</h3>
+                    <p>Comprehensive market insights to inform your strategic decision-making.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>What Sets Us Apart</h2>
+            <div class="features__grid">
+                <div class="feature__item">
+                    <h3>Data-Driven Approach</h3>
+                    <p>Every recommendation is backed by thorough analysis and market research.</p>
+                </div>
+                <div class="feature__item">
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated support team is available around the clock for your needs.</p>
+                </div>
+                <div class="feature__item">
+                    <h3>Scalable Solutions</h3>
+                    <p>Our flexible solutions grow with your business and adapt to your success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact__grid">
+                <div class="contact__info">
+                    <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                    <p><strong>Email:</strong> hello@probusiness.com</p>
+                    <p><strong>Address:</strong> 123 Business Avenue, Suite 100, Metro City, MC 12345</p>
+                    <p><strong>Hours:</strong> Mon-Fri: 9 AM - 6 PM PST</p>
+                </div>
+                <form class="contact__form" id="contactForm">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="text" name="subject" placeholder="Subject" required>
+                    <textarea name="message" placeholder="Message" required></textarea>
+                    <button type="submit" class="btn btn--primary">Send Message</button>
+                </form>
+            </div>
+            <p class="contact__response-time">We typically respond within 24 hours.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 ProBusiness Solutions. Your Partner in Growth.</p>
+            <p>
+                <a href="#">Privacy Policy</a> |
+                <a href="#">Terms of Service</a> |
+                <a href="#">Sitemap</a>
+            </p>
+            <div class="footer__social">
+                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                <a href="#" aria-label="Twitter">Twitter</a>
+                <a href="#" aria-label="Facebook">Facebook</a>
+            </div>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
