@@ -4,26 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slash - Premium Dropshipping Store</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="app.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f9fafb;
+            color: #222;
+            margin: 0;
+        }
+        header {
+            background: #1c2235;
+            color: #fff;
+            padding: 1em 2em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        header h1 { margin: 0; font-size: 2em; }
+        .nav-actions button {
+            background: #20808d;
+            color: #fff;
+            border: none;
+            padding: .5em 1em;
+            margin-left: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        main {
+            max-width: 1100px;
+            margin: 2em auto;
+            padding: 1em;
+        }
+        .deals-section {
+            margin-bottom: 2em;
+            padding: 1em;
+            background: #fcfcfd;
+            border-radius: 10px;
+            box-shadow: 0 0 8px #eee;
+        }
+        .deals-section h2 {
+            color: #20808d;
+            margin-bottom: 1em;
+        }
+        .deals-grid {
+            display: flex;
+            gap: 2em;
+            flex-wrap: wrap;
+        }
+        .deal-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 1em;
+            max-width: 230px;
+            box-shadow: 0 2px 6px #ddd;
+            position: relative;
+            text-align: center;
+            margin-bottom: 1em;
+        }
+        .deal-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .deal-price {
+            color: #dc143c;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #888;
+            margin-left: .5em;
+            font-size: .95em;
+        }
+        .badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: .9em;
+            color: #fff;
+        }
+        .hot-badge { background: #f77f00; }
+        .limited-badge { background: #dc143c; }
+        .countdown {
+            margin-top: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            color: #dc143c;
+        }
+        button {
+            background: #20808d;
+            color: #fff;
+            border: none;
+            padding: .5em 1em;
+            margin-top: .5em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background .3s;
+        }
+        button:hover { background: #37a6b2; }
+
+        footer {
+            background: #1c2235;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            margin-top: 2em;
+        }
+        @media (max-width: 750px) {
+            .deals-grid {
+                flex-direction: column;
+                gap: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav>
-            <h1>Slash</h1>
-            <input type="search" id="searchInput" placeholder="Search products...">
-            <div>
-                <button id="cartBtn">Cart <span id="cartCount">0</span></button>
-                <button id="adminBtn">Admin</button>
-            </div>
-        </nav>
+        <h1>Slash</h1>
+        <div class="nav-actions">
+            <button id="cartBtn">Cart <span id="cartCount">0</span></button>
+            <button id="adminBtn">Admin</button>
+        </div>
     </header>
-    <main id="mainContent">
-        <!-- Product grid, cart, and details will appear here via JS -->
-    </main>
-    <footer>
-        <p>© 2025 SLASH. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+    <main>
+        <section id="hot-deals" class="deals-section">
+            <h2>Hot Deals</h2>
+            <div class="deals-grid">
+                <div class="deal-card">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop" alt="Wireless Headphones">
+                    <h3>Wireless Headphones</h3>
+                    <p class="deal-price">$59.99 <span class="old-price">$79.99</span></p>
+                    <button onclick="addToCart('Wireless Headphones')">Add to Cart</button>
+                    <span class="badge hot-badge">Hot Deal!</span>
+                </div>
+                <div class="deal-card">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop" alt="Smartwatch Pro">
+                    <h3>Smartwatch Pro</h3>
+                    <p class="deal-price">$169.99 <span class="old-price">$199.99</span></p>
+                    <button onclick="addToCart('Smartwatch Pro')">Add to Cart</button>
+                    <span class="badge hot-badge">Hot Deal!</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="limited-deals" class="deals-section">
+            <h2>Limited Deals</h2>
+            <div class="deals-grid">
+                <div class="deal-card">
+                    <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&h=500&fit=crop" alt="Skincare Set">
+                    <h3>Skincare
  
