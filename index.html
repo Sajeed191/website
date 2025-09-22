@@ -1,449 +1,811 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Slash - Premium Dropshipping Store</title>
-    <style>
-        /* General Styling */
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f9fafb;
-            color: #222;
-            margin: 0;
-        }
-        header {
-            background: #1c2235;
-            color: #fff;
-            padding: 1em 2em;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 999;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2em;
-        }
-        .nav-actions button {
-            background: #20808d;
-            color: #fff;
-            border: none;
-            padding: 0.5em 1em;
-            margin-left: 1em;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-        }
-        /* Hamburger menu styling */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            width: 24px;
-            height: 20px;
-            justify-content: space-between;
-        }
-        .hamburger div {
-            background-color: white;
-            height: 3px;
-            border-radius: 2px;
-        }
-        nav {
-            display: flex;
-            gap: 1.5em;
-            align-items: center;
-            font-weight: 600;
-            font-size: 1em;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5em 0.8em;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        nav a:hover,
-        nav a.active {
-            background-color: #37a6b2;
-        }
-        /* Responsive nav collapse */
-        @media (max-width: 768px) {
-            nav {
-                display: none;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                right: 0;
-                background: #1c2235;
-                flex-direction: column;
-                padding: 1em 0;
-                border-radius: 0 0 10px 10px;
-            }
-            nav.show {
-                display: flex;
-            }
-            .hamburger {
-                display: flex;
-            }
-        }
-        main {
-            max-width: 1100px;
-            margin: 2em auto;
-            padding: 1em;
-        }
-        .deals-section {
-            margin-bottom: 2em;
-            padding: 1em;
-            background: #fcfcfd;
-            border-radius: 10px;
-            box-shadow: 0 0 8px #eee;
-        }
-        .deals-section h2 {
-            color: #20808d;
-            margin-bottom: 0.8em;
-        }
-        .deals-grid {
-            display: flex;
-            gap: 2em;
-            flex-wrap: wrap;
-        }
-        .deal-card {
-            background: #fff;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 1em;
-            max-width: 230px;
-            box-shadow: 0 2px 6px #ddd;
-            position: relative;
-            text-align: center;
-            margin-bottom: 1em;
-        }
-        .deal-card img {
-            width: 100%;
-            border-radius: 8px;
-        }
-        .deal-price {
-            color: #dc143c;
-            font-size: 1.3em;
-            font-weight: bold;
-        }
-        .old-price {
-            text-decoration: line-through;
-            color: #888;
-            margin-left: 0.5em;
-            font-size: 0.95em;
-        }
-        .badge {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.9em;
-            color: #fff;
-        }
-        .hot-badge {
-            background: #f77f00;
-        }
-        .limited-badge {
-            background: #dc143c;
-        }
-        .countdown {
-            margin-top: 8px;
-            font-size: 1em;
-            font-weight: bold;
-            color: #dc143c;
-        }
-        button {
-            background: #20808d;
-            color: #fff;
-            border: none;
-            padding: 0.5em 1em;
-            margin-top: 0.5em;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-            font-size: 1em;
-        }
-        button:hover {
-            background: #37a6b2;
-        }
-        /* Filter bar */
-        .filter-bar {
-            margin-bottom: 1.5em;
-            display: flex;
-            gap: 1.2em;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        .filter-bar label {
-            font-weight: 600;
-            color: #555;
-            margin-right: 0.5em;
-        }
-        select, input[type="range"] {
-            padding: 0.3em 0.5em;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        footer {
-            background: #1c2235;
-            color: #fff;
-            text-align: center;
-            padding: 1.5em 2em;
-            margin-top: 2em;
-        }
-        footer p, footer address {
-            margin: 0.5em 0;
-        }
-        address {
-            font-style: normal;
-            line-height: 1.4;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Slash - Premium Dropshipping Store</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f9fafb;
+    color: #222;
+    margin: 0;
+  }
+  header {
+    background: #1c2235;
+    color: #fff;
+    padding: 1em 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2em;
+  }
+  /* Navigation */
+  nav {
+    display: flex;
+    gap: 1.5em;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1em;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 0.8em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  nav a:hover,
+  nav a.active {
+    background-color: #37a6b2;
+  }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    width: 24px;
+    height: 20px;
+    justify-content: space-between;
+  }
+  .hamburger div {
+    background-color: white;
+    height: 3px;
+    border-radius: 2px;
+  }
+  @media (max-width: 768px) {
+    nav {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: #1c2235;
+      flex-direction: column;
+      padding: 1em 0;
+      border-radius: 0 0 10px 10px;
+    }
+    nav.show {
+      display: flex;
+    }
+    .hamburger {
+      display: flex;
+    }
+  }
+  .nav-actions button {
+    background: #20808d;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    margin-left: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  main {
+    max-width: 1100px;
+    margin: 2em auto;
+    padding: 1em;
+  }
+  /* Search Bar */
+  #searchBar {
+    margin-bottom: 2em;
+    display: flex;
+  }
+  #searchInput {
+    flex-grow: 1;
+    padding: 0.6em 1em;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+  }
+  #searchBtn {
+    padding: 0.6em 1em;
+    background: #20808d;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    transition: background 0.3s;
+  }
+  #searchBtn:hover {
+    background: #37a6b2;
+  }
+  /* Deals Section */
+  .deals-section {
+    margin-bottom: 2em;
+    padding: 1em;
+    background: #fcfcfd;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #eee;
+  }
+  .deals-section h2 {
+    color: #20808d;
+    margin-bottom: 0.8em;
+  }
+  .deals-grid {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+  }
+  .deal-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1em;
+    max-width: 230px;
+    box-shadow: 0 2px 6px #ddd;
+    position: relative;
+    text-align: center;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+  }
+  .deal-card img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  .deal-price {
+    color: #dc143c;
+    font-size: 1.3em;
+    font-weight: bold;
+  }
+  .old-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-left: 0.5em;
+    font-size: 0.95em;
+  }
+  .badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    color: #fff;
+  }
+  .hot-badge {
+    background: #f77f00;
+  }
+  .limited-badge {
+    background: #dc143c;
+  }
+  .countdown {
+    margin-top: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #dc143c;
+  }
+  button {
+    background: #20808d;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    margin-top: 0.5em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 1em;
+  }
+  button:hover {
+    background: #37a6b2;
+  }
+  /* Filter bar */
+  .filter-bar {
+    margin-bottom: 1.5em;
+    display: flex;
+    gap: 1.2em;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-bar label {
+    font-weight: 600;
+    color: #555;
+    margin-right: 0.5em;
+  }
+  select,
+  input[type='range'] {
+    padding: 0.3em 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
-        /* Scrollbar for nav on mobile */
-        nav::-webkit-scrollbar {
-            height: 6px;
-        }
-        nav::-webkit-scrollbar-thumb {
-            background-color: #20808d;
-            border-radius: 3px;
-        }
-    </style>
+  /* Review Section */
+  .reviews {
+    margin-top: 0.8em;
+    text-align: left;
+  }
+  .review-list {
+    max-height: 100px;
+    overflow-y: auto;
+    border-top: 1px solid #ddd;
+    margin-top: 0.5em;
+  }
+  .review-item {
+    padding: 0.3em 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9em;
+  }
+  .review-form {
+    margin-top: 0.5em;
+  }
+  .review-form textarea {
+    width: 100%;
+    height: 50px;
+    resize: vertical;
+    padding: 0.3em;
+  }
+  .share-button {
+    margin-top: 0.5em;
+    background: #4a90e2;
+    font-size: 0.85em;
+  }
+
+  /* Multi-step Purchase Modal */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1em;
+  }
+  .modal.active {
+    display: flex;
+  }
+  .modal-content {
+    background: white;
+    padding: 2em;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 100%;
+  }
+  .modal-content h3 {
+    margin-top: 0;
+  }
+  .modal-content form {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-content form label {
+    margin: 0.6em 0 0.2em 0;
+  }
+  .modal-content form input,
+  .modal-content form select,
+  .modal-content form textarea {
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  .modal-content form button {
+    margin-top: 1em;
+  }
+  /* Contact Section */
+  footer#contact-info {
+    background: #1c2235;
+    color: #fff;
+    text-align: center;
+    padding: 2em 1em;
+    margin-top: 2em;
+  }
+  footer#contact-info h2 {
+    margin-bottom: 1em;
+  }
+  footer#contact-info form {
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+  }
+  footer #contact-info form textarea,
+  footer #contact-info form input {
+    padding: 0.6em;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+  }
+  footer #contact-info form button {
+    background-color: #20808d;
+    border: none;
+    color: #fff;
+    padding: 0.8em;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s;
+  }
+  footer #contact-info form button:hover {
+    background-color: #37a6b2;
+  }
+  /* Responsive tweaks */
+  @media (max-width: 768px) {
+    .deals-grid {
+      flex-direction: column;
+    }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Slash</h1>
-        <nav id="navbar">
-            <a href="#hot-deals" class="nav-link">Hot Deals</a>
-            <a href="#limited-deals" class="nav-link">Limited Deals</a>
-            <a href="#contact-info" class="nav-link">Contact</a>
-        </nav>
-        <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="nav-actions">
-            <button id="cartBtn">Cart <span id="cartCount">0</span></button>
-            <button id="adminBtn">Admin</button>
-        </div>
-    </header>
+<header>
+  <h1>Slash</h1>
+  <nav id="navbar">
+    <a href="#hot-deals" class="nav-link">Hot Deals</a>
+    <a href="#limited-deals" class="nav-link">Limited Deals</a>
+    <a href="#additional-products" class="nav-link">More Products</a>
+    <a href="#contact-info" class="nav-link">Contact</a>
+  </nav>
+  <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+    <div></div><div></div><div></div>
+  </div>
+  <div class="nav-actions">
+    <button id="cartBtn">Cart <span id="cartCount">0</span></button>
+    <button id="adminBtn">Admin</button>
+  </div>
+</header>
 
-    <main>
-        <!-- Hot Deals Section with Filters -->
-        <section id="hot-deals" class="deals-section">
-            <h2>Hot Deals</h2>
-            <div class="filter-bar">
-                <label for="hotCategoryFilter">Category:</label>
-                <select id="hotCategoryFilter">
-                    <option value="all">All</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Health & Beauty">Health & Beauty</option>
-                    <option value="Home & Garden">Home & Garden</option>
-                    <option value="Fashion">Fashion</option>
-                </select>
-                <label for="hotPriceFilter">Max Price: $<span id="hotPriceValue">200</span></label>
-                <input type="range" id="hotPriceFilter" min="1" max="200" value="200" step="1" />
-            </div>
-            <div class="deals-grid" id="hotDealsGrid">
-                <!-- Hot deals will be inserted here by JS -->
-            </div>
-        </section>
+<main>
+  <!-- Search bar -->
+  <div id="searchBar">
+    <input type="search" id="searchInput" placeholder="Search products..." aria-label="Search products" />
+    <button id="searchBtn" aria-label="Search">Search</button>
+  </div>
 
-        <!-- Limited Deals Section with Filters -->
-        <section id="limited-deals" class="deals-section">
-            <h2>Limited Deals</h2>
-            <div class="filter-bar">
-                <label for="limitedCategoryFilter">Category:</label>
-                <select id="limitedCategoryFilter">
-                    <option value="all">All</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Health & Beauty">Health & Beauty</option>
-                    <option value="Home & Garden">Home & Garden</option>
-                    <option value="Fashion">Fashion</option>
-                </select>
-                <label for="limitedPriceFilter">Max Price: $<span id="limitedPriceValue">200</span></label>
-                <input type="range" id="limitedPriceFilter" min="1" max="200" value="200" step="1" />
-            </div>
-            <div class="deals-grid" id="limitedDealsGrid">
-                <!-- Limited deals will be inserted here by JS -->
-            </div>
-        </section>
-    </main>
+  <!-- Search results -->
+  <section id="searchResults" class="deals-section" style="display:none;">
+    <h2>Search Results</h2>
+    <div class="deals-grid" id="searchResultsGrid"></div>
+  </section>
 
-    <!-- Contact Information -->
-    <footer id="contact-info">
-        <p>© 2025 SLASH. All rights reserved.</p>
-        <address>
-            Contact us:<br />
-            Email: support@slashstore.com<br />
-            Phone: +1 (555) 123-4567<br />
-            Address: 123 Slash St, Commerce City, USA
-        </address>
-    </footer>
+  <!-- Hot Deals Section -->
+  <section id="hot-deals" class="deals-section">
+    <h2>Hot Deals</h2>
+    <div class="filter-bar">
+      <label for="hotCategoryFilter">Category:</label>
+      <select id="hotCategoryFilter">
+        <option value="all">All</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Health & Beauty">Health & Beauty</option>
+        <option value="Home & Garden">Home & Garden</option>
+        <option value="Fashion">Fashion</option>
+        <option value="Gaming">Gaming</option>
+        <option value="Pets">Pets</option>
+      </select>
+      <label for="hotPriceFilter">Max Price: $<span id="hotPriceValue">200</span></label>
+      <input type="range" id="hotPriceFilter" min="1" max="200" value="200" step="1" />
+    </div>
+    <div class="deals-grid" id="hotDealsGrid"></div>
+  </section>
 
-    <script>
-        // Hamburger menu toggle
-        const hamburger = document.getElementById('hamburger');
-        const navbar = document.getElementById('navbar');
+  <!-- Limited Deals Section -->
+  <section id="limited-deals" class="deals-section">
+    <h2>Limited Deals</h2>
+    <div class="filter-bar">
+      <label for="limitedCategoryFilter">Category:</label>
+      <select id="limitedCategoryFilter">
+        <option value="all">All</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Health & Beauty">Health & Beauty</option>
+        <option value="Home & Garden">Home & Garden</option>
+        <option value="Fashion">Fashion</option>
+        <option value="Gaming">Gaming</option>
+        <option value="Pets">Pets</option>
+      </select>
+      <label for="limitedPriceFilter">Max Price: $<span id="limitedPriceValue">200</span></label>
+      <input type="range" id="limitedPriceFilter" min="1" max="200" value="200" step="1" />
+    </div>
+    <div class="deals-grid" id="limitedDealsGrid"></div>
+  </section>
 
-        hamburger.addEventListener('click', () => {
-            navbar.classList.toggle('show');
-        });
-        hamburger.addEventListener('keypress', e => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                navbar.classList.toggle('show');
-            }
-        });
+  <!-- Additional Products Section -->
+  <section id="additional-products" class="deals-section">
+    <h2>Other Products</h2>
+    <div class="filter-bar">
+      <label for="additionalCategoryFilter">Category:</label>
+      <select id="additionalCategoryFilter">
+        <option value="all">All</option>
+        <option value="Fashion">Fashion</option>
+        <option value="Gaming">Gaming</option>
+        <option value="Gadgets">Gadgets</option>
+        <option value="Bags">Bags</option>
+        <option value="Pets">Pets</option>
+      </select>
+      <label for="additionalPriceFilter">Max Price: $<span id="additionalPriceValue">200</span></label>
+      <input type="range" id="additionalPriceFilter" min="1" max="200" value="200" step="1" />
+    </div>
+    <div class="deals-grid" id="additionalProductsGrid"></div>
+  </section>
+</main>
 
-        // Sample product data with categories and deal type
-        const products = [
-            {
-                id: 1,
-                name: "Wireless Headphones",
-                price: 59.99,
-                oldPrice: 79.99,
-                stock: 23,
-                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop",
-                category: "Electronics",
-                dealType: "hot"
-            },
-            {
-                id: 2,
-                name: "Smartwatch Pro",
-                price: 169.99,
-                oldPrice: 199.99,
-                stock: 10,
-                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop",
-                category: "Electronics",
-                dealType: "hot"
-            },
-            {
-                id: 3,
-                name: "Skincare Set",
-                price: 69.99,
-                oldPrice: 89.99,
-                stock: 20,
-                image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&h=500&fit=crop",
-                category: "Health & Beauty",
-                dealType: "limited",
-                countdownId: "countdown1",
-                countdownDuration: 3 * 3600 + 12 * 60 + 58
-            },
-            {
-                id: 4,
-                name: "Eco Bottle",
-                price: 19.99,
-                oldPrice: 24.99,
-                stock: 30,
-                image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop",
-                category: "Home & Garden",
-                dealType: "limited",
-                countdownId: "countdown2",
-                countdownDuration: 1 * 3600 + 20 * 60 + 15
-            }
-        ];
+<!-- Purchase Modal -->
+<div class="modal" id="purchaseModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+  <div class="modal-content">
+    <h3 id="modalTitle">Checkout - Step 1: Shipping Address</h3>
+    <form id="addressForm">
+      <label for="nameInput">Full Name *</label>
+      <input type="text" id="nameInput" name="nameInput" required />
+      
+      <label for="emailInput">Email *</label>
+      <input type="email" id="emailInput" name="emailInput" required />
+      
+      <label for="addressInput">Address *</label>
+      <textarea id="addressInput" name="addressInput" rows="3" required></textarea>
+      
+      <label for="cityInput">City *</label>
+      <input type="text" id="cityInput" name="cityInput" required />
+      
+      <label for="stateInput">State *</label>
+      <input type="text" id="stateInput" name="stateInput" required />
+      
+      <label for="zipInput">Zip Code *</label>
+      <input type="text" id="zipInput" name="zipInput" required />
+      
+      <button type="submit">Next: Payment</button>
+    </form>
+  </div>
+</div>
 
-        // Cart counter
-        let cartCount = 0;
-        function addToCart(itemName) {
-            cartCount++;
-            document.getElementById('cartCount').textContent = cartCount;
-            alert(itemName + " added to cart!");
-        }
+<!-- Payment Modal -->
+<div class="modal" id="paymentModal" aria-hidden="true" role="dialog" aria-labelledby="paymentTitle" aria-modal="true">
+  <div class="modal-content">
+    <h3 id="paymentTitle">Checkout - Step 2: Payment</h3>
+    <form id="paymentForm">
+      <label>Payment Method *</label>
+      <select id="paymentMethod" required>
+        <option value="" disabled selected>Select payment method</option>
+        <option value="cod">Cash On Delivery</option>
+        <option value="upi">UPI Payment</option>
+        <option value="card">Card Payment</option>
+      </select>
 
-        // Render Deals
-        function renderDeals() {
-            const hotGrid = document.getElementById('hotDealsGrid');
-            const limitedGrid = document.getElementById('limitedDealsGrid');
+      <div id="cardDetails" style="display:none; margin-top:1em;">
+        <label for="cardNumber">Card Number *</label>
+        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" pattern="\\d{16}" />
+        <label for="expiryDate">Expiry Date *</label>
+        <input type="month" id="expiryDate" />
+        <label for="cvv">CVV *</label>
+        <input type="password" id="cvv" maxlength="3" pattern="\\d{3}" />
+      </div>
 
-            hotGrid.innerHTML = '';
-            limitedGrid.innerHTML = '';
+      <button type="submit">Place Order</button>
+    </form>
+  </div>
+</div>
 
-            const hotCategory = document.getElementById('hotCategoryFilter').value;
-            const hotMaxPrice = parseFloat(document.getElementById('hotPriceFilter').value);
-            const limitedCategory = document.getElementById('limitedCategoryFilter').value;
-            const limitedMaxPrice = parseFloat(document.getElementById('limitedPriceFilter').value);
+<!-- Contact Section -->
+<footer id="contact-info">
+  <h2>Contact Us</h2>
+  <p>© 2025 SLASH. All rights reserved.</p>
+  <address>
+    Email: support@slashstore.com<br />
+    Phone: +1 (555) 123-4567<br />
+    Address: 123 Slash St, Commerce City, USA
+  </address>
+  <form id="contactForm" aria-label="Customer contact and feedback form">
+    <label for="contactName">Full Name *</label>
+    <input type="text" id="contactName" name="contactName" required />
+    
+    <label for="contactEmail">Email *</label>
+    <input type="email" id="contactEmail" name="contactEmail" required />
+    
+    <label for="contactMessage">Your Message *</label>
+    <textarea id="contactMessage" name="contactMessage" rows="4" required></textarea>
+    
+    <button type="submit">Send Message</button>
+  </form>
+</footer>
 
-            products.forEach(product => {
-                if (product.dealType === 'hot' &&
-                    (hotCategory === 'all' || product.category === hotCategory) &&
-                    product.price <= hotMaxPrice) {
+<script>
+  // Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const navbar = document.getElementById('navbar');
+  hamburger.addEventListener('click', () => navbar.classList.toggle('show'));
+  hamburger.addEventListener('keypress', e => {
+    if (e.key === 'Enter' || e.key === ' ') navbar.classList.toggle('show');
+  });
 
-                    const card = createDealCard(product, 'Hot Deal!', 'hot-badge');
-                    hotGrid.appendChild(card);
-                }
-                if (product.dealType === 'limited' &&
-                    (limitedCategory === 'all' || product.category === limitedCategory) &&
-                    product.price <= limitedMaxPrice) {
+  // Product catalog with categories and deal type, extended with new categories
+  const products = [
+    // Hot deals
+    { id: 1, name: "Wireless Headphones", price: 59.99, oldPrice: 79.99, stock: 23, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop", category: "Electronics", dealType: "hot", reviews: [] },
+    { id: 2, name: "Smartwatch Pro", price: 169.99, oldPrice: 199.99, stock: 10, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop", category: "Electronics", dealType: "hot", reviews: [] },
+    { id: 11, name: "Gaming Headset", price: 89.99, oldPrice: 120.00, stock: 18, image: "https://images.unsplash.com/photo-1590080877777-dfe059c31831?w=500&h=500&fit=crop", category: "Gaming", dealType: "hot", reviews: [] },
 
-                    const card = createDealCard(product, 'Limited Time!', 'limited-badge', product.countdownId);
-                    limitedGrid.appendChild(card);
-                }
-            });
-        }
+    // Limited deals
+    { id: 3, name: "Skincare Set", price: 69.99, oldPrice: 89.99, stock: 20, image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&h=500&fit=crop", category: "Health & Beauty", dealType: "limited", countdownId: "countdown1", countdownDuration: 3 * 3600 + 12 * 60 + 58, reviews: [] },
+    { id: 4, name: "Eco Bottle", price: 19.99, oldPrice: 24.99, stock: 30, image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop", category: "Home & Garden", dealType: "limited", countdownId: "countdown2", countdownDuration: 1 * 3600 + 20 * 60 + 15, reviews: [] },
+    { id: 12, name: "Pet Food Premium", price: 35.99, oldPrice: 45.99, stock: 40, image: "https://images.unsplash.com/photo-1503602642458-232111445657?w=500&h=500&fit=crop", category: "Pets", dealType: "limited", countdownId: "countdown3", countdownDuration: 2 * 3600 + 2 * 60 + 0, reviews: [] },
 
-        // Create a deal card element
-        function createDealCard(product, badgeText, badgeClass, countdownId) {
-            const card = document.createElement('div');
-            card.className = 'deal-card';
-            card.innerHTML = `
-                <img src="${product.image}" alt="${product.name}">
-                <h3>${product.name}</h3>
-                <p class="deal-price">$${product.price.toFixed(2)} <span class="old-price">$${product.oldPrice.toFixed(2)}</span></p>
-                <button onclick="addToCart('${product.name}')">Add to Cart</button>
-                <span class="badge ${badgeClass}">${badgeText}</span>
-            `;
-            if (countdownId) {
-                const countdownDiv = document.createElement('div');
-                countdownDiv.className = 'countdown';
-                countdownDiv.id = countdownId;
-                countdownDiv.textContent = '00:00:00';
-                card.appendChild(countdownDiv);
-                startCountdown(countdownId, product.countdownDuration);
-            }
-            return card;
-        }
+    // Additional products (fashion, bags, gadgets, etc.)
+    { id: 5, name: "Stylish Dress", price: 89.99, oldPrice: 109.99, stock: 25, image: "https://images.unsplash.com/photo-1503342318421-f9f4d4636d3c?w=500&h=500&fit=crop", category: "Fashion", dealType: "additional", reviews: [] },
+    { id: 6, name: "Leather Bag", price: 120.50, oldPrice: 150.00, stock: 15, image: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] },
+    { id: 7, name: "Wireless Mouse", price: 25.99, oldPrice: 35.00, stock: 50, image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&h=500&fit=crop", category: "Gadgets", dealType: "additional", reviews: [] },
+    { id: 8, name: "Gaming Keyboard", price: 70.00, oldPrice: 89.99, stock: 30, image:"https://images.unsplash.com/photo-1533227268428-f38a9c9a5057?w=500&h=500&fit=crop", category: "Gaming", dealType: "additional", reviews: [] },
+    { id: 9, name: "Smart Bagpack", price: 75.00, oldPrice: 95.00, stock: 20, image: "https://images.unsplash.com/photo-1520944619102782-c8c9991e7b6e?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] },
+    { id: 10, name: "Pet Toy Set", price: 39.99, oldPrice: 54.99, stock: 35, image: "https://images.unsplash.com/photo-1596495578060-c9bf675b648a?w=500&h=500&fit=crop", category: "Pets", dealType: "additional", reviews: [] }
+  ];
 
-        // Countdown timer
-        function startCountdown(elementId, duration) {
-            let timer = duration, hours, minutes, seconds;
-            const countdownEl = document.getElementById(elementId);
+  // Cart count and tracking
+  let cartCount = 0;
+  function addToCart(itemId) {
+    cartCount++;
+    document.getElementById("cartCount").textContent = cartCount;
+    alert("Added to cart: " + products.find(p => p.id === itemId).name);
+    // Open purchase modal
+    currentPurchaseProduct = products.find(p => p.id === itemId);
+    openAddressModal();
+  }
 
-            const interval = setInterval(() => {
-                hours = Math.floor(timer / 3600);
-                minutes = Math.floor((timer % 3600) / 60);
-                seconds = timer % 60;
+  // Current purchase product tracking
+  let currentPurchaseProduct = null;
 
-                countdownEl.textContent =
-                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                if (--timer < 0) {
-                    clearInterval(interval);
-                    countdownEl.textContent = "Deal expired";
-                }
-            }, 1000);
-        }
+  // Rendering functions for sections based on filters
+  function renderSection(filterDealType, gridId, categoryFilterId, priceFilterId, priceValueId) {
+    const grid = document.getElementById(gridId);
+    const category = document.getElementById(categoryFilterId).value;
+    const maxPrice = parseFloat(document.getElementById(priceFilterId).value);
 
-        // Update filter labels
-        document.getElementById('hotPriceFilter').addEventListener('input', e => {
-            document.getElementById('hotPriceValue').textContent = e.target.value;
-            renderDeals();
-        });
-        document.getElementById('limitedPriceFilter').addEventListener('input', e => {
-            document.getElementById('limitedPriceValue').textContent = e.target.value;
-            renderDeals();
-        });
-        document.getElementById('hotCategoryFilter').addEventListener('change', renderDeals);
-        document.getElementById('limitedCategoryFilter').addEventListener('change', renderDeals);
+    document.getElementById(priceValueId).textContent = maxPrice.toFixed(2);
 
-        // Initial render
-        renderDeals();
-    </script>
+    grid.innerHTML = "";
+    products.forEach(product => {
+      if (
+        product.dealType === filterDealType &&
+        (category === "all" || product.category === category) &&
+        product.price <= maxPrice
+      ) {
+        const card = createProductCard(product);
+        grid.appendChild(card);
+      }
+    });
+  }
+
+  function renderAllSections() {
+    renderSection("hot", "hotDealsGrid", "hotCategoryFilter", "hotPriceFilter", "hotPriceValue");
+    renderSection("limited", "limitedDealsGrid", "limitedCategoryFilter", "limitedPriceFilter", "limitedPriceValue");
+    renderSection("additional", "additionalProductsGrid", "additionalCategoryFilter", "additionalPriceFilter", "additionalPriceValue");
+  }
+
+  // Create product card, with reviews, share, buy buttons
+  function createProductCard(product) {
+    const card = document.createElement("div");
+    card.className = "deal-card";
+
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" />
+      <h3>${product.name}</h3>
+      <p class="deal-price">$${product.price.toFixed(2)} <span class="old-price">$${product.oldPrice.toFixed(2)}</span></p>
+      <button onclick="addToCart(${product.id})">Buy Now</button>
+      <button class="share-button" onclick="shareProduct('${encodeURIComponent(product.name)}')">Share</button>
+      <div class="reviews">
+        <strong>Reviews:</strong>
+        <div class="review-list" id="review-list-${product.id}"></div>
+        <form class="review-form" onsubmit="submitReview(event, ${product.id})">
+          <textarea required placeholder="Write your review..."></textarea>
+          <button type="submit">Submit Review</button>
+        </form>
+      </div>
+    `;
+
+    displayReviews(product.id);
+
+    return card;
+  }
+
+  // Review management
+  function displayReviews(productId) {
+    const product = products.find(p => p.id === productId);
+    const reviewList = document.getElementById(`review-list-${productId}`);
+    reviewList.innerHTML = "";
+    if (product.reviews.length === 0) {
+      reviewList.textContent = "No reviews yet.";
+      return;
+    }
+    product.reviews.forEach((review, idx) => {
+      const div = document.createElement("div");
+      div.className = "review-item";
+      div.textContent = review;
+      reviewList.appendChild(div);
+    });
+  }
+
+  function submitReview(event, productId) {
+    event.preventDefault();
+    const form = event.target;
+    const reviewText = form.querySelector("textarea").value.trim();
+    if (reviewText.length > 0) {
+      const product = products.find(p => p.id === productId);
+      product.reviews.push(reviewText);
+      displayReviews(productId);
+      form.reset();
+    }
+  }
+
+  // Share product (opens native navigator share if available or fallback alert)
+  function shareProduct(productName) {
+    const shareData = {
+      title: "Slash Store Product",
+      text: "Check out this product: " + decodeURIComponent(productName),
+      url: window.location.href
+    };
+    if (navigator.share) {
+      navigator.share(shareData).catch(err => alert("Error sharing: " + err));
+    } else {
+      alert("Share this product link: " + window.location.href);
+    }
+  }
+
+  // Search functionality
+  const searchInput = document.getElementById("searchInput");
+  const searchResultsSection = document.getElementById("searchResults");
+  const searchResultsGrid = document.getElementById("searchResultsGrid");
+
+  document.getElementById("searchBtn").addEventListener("click", () => {
+    const query = searchInput.value.trim().toLowerCase();
+    if (!query) {
+      searchResultsSection.style.display = "none";
+      return;
+    }
+    const matchedProducts = products.filter(p => p.name.toLowerCase().includes(query));
+    renderSearchResults(matchedProducts);
+  });
+
+  function renderSearchResults(results) {
+    searchResultsGrid.innerHTML = "";
+    if (results.length === 0) {
+      searchResultsGrid.innerHTML = "<p>No products matched your search.</p>";
+    } else {
+      results.forEach(product => {
+        const card = createProductCard(product);
+        searchResultsGrid.appendChild(card);
+      });
+    }
+    searchResultsSection.style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // Modal handling for multi-step checkout
+  const purchaseModal = document.getElementById("purchaseModal");
+  const paymentModal = document.getElementById("paymentModal");
+  const addressForm = document.getElementById("addressForm");
+  const paymentForm = document.getElementById("paymentForm");
+
+  function openAddressModal() {
+    addressForm.reset();
+    paymentForm.reset();
+    paymentModal.classList.remove("active");
+    purchaseModal.classList.add("active");
+    purchaseModal.setAttribute("aria-hidden", "false");
+  }
+  function closeAddressModal() {
+    purchaseModal.classList.remove("active");
+    purchaseModal.setAttribute("aria-hidden", "true");
+  }
+  function openPaymentModal() {
+    paymentForm.reset();
+    purchaseModal.classList.remove("active");
+    paymentModal.classList.add("active");
+    paymentModal.setAttribute("aria-hidden", "false");
+  }
+  function closePaymentModal() {
+    paymentModal.classList.remove("active");
+    paymentModal.setAttribute("aria-hidden", "true");
+  }
+
+  addressForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const formData = new FormData(addressForm);
+    // Basic validation done by required attribute
+    openPaymentModal();
+  });
+
+  // Show/hide card details based on payment method
+  const paymentMethodSelect = document.getElementById("paymentMethod");
+  const cardDetailsDiv = document.getElementById("cardDetails");
+  paymentMethodSelect.addEventListener("change", e => {
+    cardDetailsDiv.style.display = e.target.value === "card" ? "block" : "none";
+  });
+
+  paymentForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const paymentMethod = paymentMethodSelect.value;
+    if (!paymentMethod) {
+      alert("Please select a payment method.");
+      return;
+    }
+    // If card payment selected, validate card inputs
+    if (paymentMethod === "card") {
+      const cardNumber = document.getElementById("cardNumber").value.trim();
+      const expiryDate = document.getElementById("expiryDate").value.trim();
+      const cvv = document.getElementById("cvv").value.trim();
+      if (cardNumber.length !== 16 || !/^\d{16}$/.test(cardNumber)) {
+        alert("Please enter a valid 16-digit card number.");
+        return;
+      }
+      if (!expiryDate) {
+        alert("Please enter a valid expiry date.");
+        return;
+      }
+      if (cvv.length !== 3 || !/^\d{3}$/.test(cvv)) {
+        alert("Please enter a valid 3-digit CVV.");
+        return;
+      }
+    }
+    alert("Order placed successfully! Thank you for shopping with Slash.");
+    closePaymentModal();
+  });
+
+  // Contact form
+  const contactForm = document.getElementById("contactForm");
+  contactForm.addEventListener("submit", e => {
+    e.preventDefault();
+    alert("Thank you for contacting us! We will get back to you shortly.");
+    contactForm.reset();
+  });
+
+  // Countdown timer for limited deals
+  function startCountdown(elementId, duration) {
+    let timer = duration,
+      hours,
+      minutes,
+      seconds;
+    const countdownEl = document.getElementById(elementId);
+
+    if (!countdownEl) return;
+
+    const interval = setInterval(() => {
+      hours = Math.floor(timer / 3600);
+      minutes = Math.floor((timer % 3600) / 60);
+      seconds = timer % 60;
+
+      countdownEl.textContent =
+        `${hours.toString().padStart(2, "0")}:${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+      if (--timer < 0) {
+        clearInterval(interval);
+        countdownEl.textContent = "Deal expired";
+      }
+    }, 1000);
+  }
+
+  // Initialize countdowns
+  function initCountdowns() {
+    products.forEach((product) => {
+      if (product.dealType === "limited" && product.countdownId && product.countdownDuration) {
+        startCountdown(product.countdownId, product.countdownDuration);
+      }
+    });
+  }
+
+  // Event listeners for filters
+  [
+    ["hotCategoryFilter", "hotPriceFilter", "hotDealsGrid", "hotPriceValue", "hot"],
+    ["limitedCategoryFilter", "limitedPriceFilter", "limitedDealsGrid", "limitedPriceValue", "limited"],
+    ["additionalCategoryFilter", "additionalPriceFilter", "additionalProductsGrid", "additionalPriceValue", "additional"],
+  ].forEach(([catId, priceId, gridId, priceValueId, dealType]) => {
+    document.getElementById(catId).addEventListener("change", renderAllSections);
+    document.getElementById(priceId).addEventListener("input", renderAllSections);
+  });
+
+  // Initial render
+  renderAllSections();
+  initCountdowns();
+</script>
 </body>
 </html>
  
