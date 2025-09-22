@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Slash - Premium Dropshipping Store</title>
     <style>
+        /* General Styling */
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background: #f9fafb;
@@ -18,16 +19,75 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 999;
         }
-        header h1 { margin: 0; font-size: 2em; }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
         .nav-actions button {
             background: #20808d;
             color: #fff;
             border: none;
-            padding: .5em 1em;
+            padding: 0.5em 1em;
             margin-left: 1em;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 1em;
+        }
+        /* Hamburger menu styling */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 24px;
+            height: 20px;
+            justify-content: space-between;
+        }
+        .hamburger div {
+            background-color: white;
+            height: 3px;
+            border-radius: 2px;
+        }
+        nav {
+            display: flex;
+            gap: 1.5em;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1em;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5em 0.8em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover,
+        nav a.active {
+            background-color: #37a6b2;
+        }
+        /* Responsive nav collapse */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #1c2235;
+                flex-direction: column;
+                padding: 1em 0;
+                border-radius: 0 0 10px 10px;
+            }
+            nav.show {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
         }
         main {
             max-width: 1100px;
@@ -43,7 +103,7 @@
         }
         .deals-section h2 {
             color: #20808d;
-            margin-bottom: 1em;
+            margin-bottom: 0.8em;
         }
         .deals-grid {
             display: flex;
@@ -73,8 +133,8 @@
         .old-price {
             text-decoration: line-through;
             color: #888;
-            margin-left: .5em;
-            font-size: .95em;
+            margin-left: 0.5em;
+            font-size: 0.95em;
         }
         .badge {
             position: absolute;
@@ -82,11 +142,15 @@
             left: 16px;
             padding: 4px 10px;
             border-radius: 12px;
-            font-size: .9em;
+            font-size: 0.9em;
             color: #fff;
         }
-        .hot-badge { background: #f77f00; }
-        .limited-badge { background: #dc143c; }
+        .hot-badge {
+            background: #f77f00;
+        }
+        .limited-badge {
+            background: #dc143c;
+        }
         .countdown {
             margin-top: 8px;
             font-size: 1em;
@@ -97,62 +161,289 @@
             background: #20808d;
             color: #fff;
             border: none;
-            padding: .5em 1em;
-            margin-top: .5em;
+            padding: 0.5em 1em;
+            margin-top: 0.5em;
             border-radius: 5px;
             cursor: pointer;
-            transition: background .3s;
+            transition: background 0.3s;
+            font-size: 1em;
         }
-        button:hover { background: #37a6b2; }
-
+        button:hover {
+            background: #37a6b2;
+        }
+        /* Filter bar */
+        .filter-bar {
+            margin-bottom: 1.5em;
+            display: flex;
+            gap: 1.2em;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-bar label {
+            font-weight: 600;
+            color: #555;
+            margin-right: 0.5em;
+        }
+        select, input[type="range"] {
+            padding: 0.3em 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
         footer {
             background: #1c2235;
             color: #fff;
             text-align: center;
-            padding: 1em;
+            padding: 1.5em 2em;
             margin-top: 2em;
         }
-        @media (max-width: 750px) {
-            .deals-grid {
-                flex-direction: column;
-                gap: 1em;
-            }
+        footer p, footer address {
+            margin: 0.5em 0;
+        }
+        address {
+            font-style: normal;
+            line-height: 1.4;
+        }
+
+        /* Scrollbar for nav on mobile */
+        nav::-webkit-scrollbar {
+            height: 6px;
+        }
+        nav::-webkit-scrollbar-thumb {
+            background-color: #20808d;
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Slash</h1>
+        <nav id="navbar">
+            <a href="#hot-deals" class="nav-link">Hot Deals</a>
+            <a href="#limited-deals" class="nav-link">Limited Deals</a>
+            <a href="#contact-info" class="nav-link">Contact</a>
+        </nav>
+        <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         <div class="nav-actions">
             <button id="cartBtn">Cart <span id="cartCount">0</span></button>
             <button id="adminBtn">Admin</button>
         </div>
     </header>
+
     <main>
+        <!-- Hot Deals Section with Filters -->
         <section id="hot-deals" class="deals-section">
             <h2>Hot Deals</h2>
-            <div class="deals-grid">
-                <div class="deal-card">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop" alt="Wireless Headphones">
-                    <h3>Wireless Headphones</h3>
-                    <p class="deal-price">$59.99 <span class="old-price">$79.99</span></p>
-                    <button onclick="addToCart('Wireless Headphones')">Add to Cart</button>
-                    <span class="badge hot-badge">Hot Deal!</span>
-                </div>
-                <div class="deal-card">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop" alt="Smartwatch Pro">
-                    <h3>Smartwatch Pro</h3>
-                    <p class="deal-price">$169.99 <span class="old-price">$199.99</span></p>
-                    <button onclick="addToCart('Smartwatch Pro')">Add to Cart</button>
-                    <span class="badge hot-badge">Hot Deal!</span>
-                </div>
+            <div class="filter-bar">
+                <label for="hotCategoryFilter">Category:</label>
+                <select id="hotCategoryFilter">
+                    <option value="all">All</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Health & Beauty">Health & Beauty</option>
+                    <option value="Home & Garden">Home & Garden</option>
+                    <option value="Fashion">Fashion</option>
+                </select>
+                <label for="hotPriceFilter">Max Price: $<span id="hotPriceValue">200</span></label>
+                <input type="range" id="hotPriceFilter" min="1" max="200" value="200" step="1" />
+            </div>
+            <div class="deals-grid" id="hotDealsGrid">
+                <!-- Hot deals will be inserted here by JS -->
             </div>
         </section>
 
+        <!-- Limited Deals Section with Filters -->
         <section id="limited-deals" class="deals-section">
             <h2>Limited Deals</h2>
-            <div class="deals-grid">
-                <div class="deal-card">
-                    <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&h=500&fit=crop" alt="Skincare Set">
-                    <h3>Skincare
+            <div class="filter-bar">
+                <label for="limitedCategoryFilter">Category:</label>
+                <select id="limitedCategoryFilter">
+                    <option value="all">All</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Health & Beauty">Health & Beauty</option>
+                    <option value="Home & Garden">Home & Garden</option>
+                    <option value="Fashion">Fashion</option>
+                </select>
+                <label for="limitedPriceFilter">Max Price: $<span id="limitedPriceValue">200</span></label>
+                <input type="range" id="limitedPriceFilter" min="1" max="200" value="200" step="1" />
+            </div>
+            <div class="deals-grid" id="limitedDealsGrid">
+                <!-- Limited deals will be inserted here by JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Information -->
+    <footer id="contact-info">
+        <p>© 2025 SLASH. All rights reserved.</p>
+        <address>
+            Contact us:<br />
+            Email: support@slashstore.com<br />
+            Phone: +1 (555) 123-4567<br />
+            Address: 123 Slash St, Commerce City, USA
+        </address>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navbar = document.getElementById('navbar');
+
+        hamburger.addEventListener('click', () => {
+            navbar.classList.toggle('show');
+        });
+        hamburger.addEventListener('keypress', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                navbar.classList.toggle('show');
+            }
+        });
+
+        // Sample product data with categories and deal type
+        const products = [
+            {
+                id: 1,
+                name: "Wireless Headphones",
+                price: 59.99,
+                oldPrice: 79.99,
+                stock: 23,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop",
+                category: "Electronics",
+                dealType: "hot"
+            },
+            {
+                id: 2,
+                name: "Smartwatch Pro",
+                price: 169.99,
+                oldPrice: 199.99,
+                stock: 10,
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop",
+                category: "Electronics",
+                dealType: "hot"
+            },
+            {
+                id: 3,
+                name: "Skincare Set",
+                price: 69.99,
+                oldPrice: 89.99,
+                stock: 20,
+                image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&h=500&fit=crop",
+                category: "Health & Beauty",
+                dealType: "limited",
+                countdownId: "countdown1",
+                countdownDuration: 3 * 3600 + 12 * 60 + 58
+            },
+            {
+                id: 4,
+                name: "Eco Bottle",
+                price: 19.99,
+                oldPrice: 24.99,
+                stock: 30,
+                image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop",
+                category: "Home & Garden",
+                dealType: "limited",
+                countdownId: "countdown2",
+                countdownDuration: 1 * 3600 + 20 * 60 + 15
+            }
+        ];
+
+        // Cart counter
+        let cartCount = 0;
+        function addToCart(itemName) {
+            cartCount++;
+            document.getElementById('cartCount').textContent = cartCount;
+            alert(itemName + " added to cart!");
+        }
+
+        // Render Deals
+        function renderDeals() {
+            const hotGrid = document.getElementById('hotDealsGrid');
+            const limitedGrid = document.getElementById('limitedDealsGrid');
+
+            hotGrid.innerHTML = '';
+            limitedGrid.innerHTML = '';
+
+            const hotCategory = document.getElementById('hotCategoryFilter').value;
+            const hotMaxPrice = parseFloat(document.getElementById('hotPriceFilter').value);
+            const limitedCategory = document.getElementById('limitedCategoryFilter').value;
+            const limitedMaxPrice = parseFloat(document.getElementById('limitedPriceFilter').value);
+
+            products.forEach(product => {
+                if (product.dealType === 'hot' &&
+                    (hotCategory === 'all' || product.category === hotCategory) &&
+                    product.price <= hotMaxPrice) {
+
+                    const card = createDealCard(product, 'Hot Deal!', 'hot-badge');
+                    hotGrid.appendChild(card);
+                }
+                if (product.dealType === 'limited' &&
+                    (limitedCategory === 'all' || product.category === limitedCategory) &&
+                    product.price <= limitedMaxPrice) {
+
+                    const card = createDealCard(product, 'Limited Time!', 'limited-badge', product.countdownId);
+                    limitedGrid.appendChild(card);
+                }
+            });
+        }
+
+        // Create a deal card element
+        function createDealCard(product, badgeText, badgeClass, countdownId) {
+            const card = document.createElement('div');
+            card.className = 'deal-card';
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p class="deal-price">$${product.price.toFixed(2)} <span class="old-price">$${product.oldPrice.toFixed(2)}</span></p>
+                <button onclick="addToCart('${product.name}')">Add to Cart</button>
+                <span class="badge ${badgeClass}">${badgeText}</span>
+            `;
+            if (countdownId) {
+                const countdownDiv = document.createElement('div');
+                countdownDiv.className = 'countdown';
+                countdownDiv.id = countdownId;
+                countdownDiv.textContent = '00:00:00';
+                card.appendChild(countdownDiv);
+                startCountdown(countdownId, product.countdownDuration);
+            }
+            return card;
+        }
+
+        // Countdown timer
+        function startCountdown(elementId, duration) {
+            let timer = duration, hours, minutes, seconds;
+            const countdownEl = document.getElementById(elementId);
+
+            const interval = setInterval(() => {
+                hours = Math.floor(timer / 3600);
+                minutes = Math.floor((timer % 3600) / 60);
+                seconds = timer % 60;
+
+                countdownEl.textContent =
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    countdownEl.textContent = "Deal expired";
+                }
+            }, 1000);
+        }
+
+        // Update filter labels
+        document.getElementById('hotPriceFilter').addEventListener('input', e => {
+            document.getElementById('hotPriceValue').textContent = e.target.value;
+            renderDeals();
+        });
+        document.getElementById('limitedPriceFilter').addEventListener('input', e => {
+            document.getElementById('limitedPriceValue').textContent = e.target.value;
+            renderDeals();
+        });
+        document.getElementById('hotCategoryFilter').addEventListener('change', renderDeals);
+        document.getElementById('limitedCategoryFilter').addEventListener('change', renderDeals);
+
+        // Initial render
+        renderDeals();
+    </script>
+</body>
+</html>
  
