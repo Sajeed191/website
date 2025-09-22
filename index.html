@@ -4,64 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slash - Premium Dropshipping Store</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="container">
-                <div class="navbar-content">
-                    <div class="navbar-brand">
-                        <h1>SLASH</h1>
-                    </div>
-                    
-                    <div class="navbar-search">
-                        <input type="text" placeholder="Search products..." class="search-input" id="searchInput">
-                        <button class="search-btn" id="searchBtn">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="navbar-actions">
-                        <button class="cart-btn" id="cartBtn">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count" id="cartCount">0</span>
-                        </button>
-                        <button class="admin-btn" id="adminBtn">
-                            <i class="fas fa-user-cog"></i>
-                        </button>
-                        <button class="mobile-menu-btn" id="mobileMenuBtn">
-                            <i class="fas fa-bars"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="navbar-menu" id="navbarMenu">
-                    <a href="#" class="nav-link" onclick="showHome()">Home</a>
-                    <a href="#" class="nav-link" onclick="showProducts()">Products</a>
-                    <!-- Add categories here -->
-                </div>
+    <header>
+        <nav>
+            <h1>Slash</h1>
+            <input type="search" id="searchInput" placeholder="Search products...">
+            <div>
+                <button id="cartBtn">Cart <span id="cartCount">0</span></button>
+                <button id="adminBtn">Admin</button>
             </div>
         </nav>
     </header>
-    
-    <!-- Main Content -->
     <main id="mainContent">
-        <!-- Homepage, Product Catalog, Cart, Checkout, and Admin panels will be dynamically injected here by JavaScript -->
+        <!-- Product grid, cart, and details will appear here via JS -->
     </main>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <span>© 2025 SLASH. All rights reserved.</span>
-            </div>
-        </div>
+    <footer>
+        <p>© 2025 SLASH. All rights reserved.</p>
     </footer>
-    
-    <script src="app.js"></script>
 </body>
 </html>
  
