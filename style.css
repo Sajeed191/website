@@ -1,1 +1,34 @@
-
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f9fafb;
+  color: #222;
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1c2235;
+  color: #fff;
+  padding: 1em 2em;
+}
+.product {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 4px #ddd;
+  padding: 1em;
+  margin: 1em;
+}
+button {
+  background: #20808d;
+  color: #fff;
+  border: none;
+  padding: .5em 1em;
+  margin-top: .5em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background .3s;
+}
+button:hover {
+  background: #37a6b2;
+}
+ 
