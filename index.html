@@ -5,12 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Slash - Premium Dropshipping Store</title>
 <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
   body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background: #f9fafb;
     color: #222;
-    margin: 0;
+    line-height: 1.6;
   }
+  
   header {
     background: #1c2235;
     color: #fff;
@@ -21,11 +28,14 @@
     position: sticky;
     top: 0;
     z-index: 999;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
+  
   header h1 {
-    margin: 0;
-    font-size: 2em;
+    font-size: 2.2em;
+    font-weight: 700;
   }
+  
   nav {
     display: flex;
     gap: 1.5em;
@@ -33,6 +43,7 @@
     font-weight: 600;
     font-size: 1em;
   }
+  
   nav a {
     color: white;
     text-decoration: none;
@@ -40,10 +51,12 @@
     border-radius: 5px;
     transition: background-color 0.3s ease;
   }
+  
   nav a:hover,
   nav a.active {
     background-color: #37a6b2;
   }
+  
   .hamburger {
     display: none;
     flex-direction: column;
@@ -52,11 +65,14 @@
     height: 20px;
     justify-content: space-between;
   }
+  
   .hamburger div {
     background-color: white;
     height: 3px;
     border-radius: 2px;
+    transition: 0.3s;
   }
+  
   @media (max-width: 768px) {
     nav {
       display: none;
@@ -68,6 +84,7 @@
       flex-direction: column;
       padding: 1em 0;
       border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     nav.show {
       display: flex;
@@ -76,258 +93,368 @@
       display: flex;
     }
   }
+  
+  .nav-actions {
+    display: flex;
+    gap: 0.5em;
+  }
+  
   .nav-actions button {
     background: #20808d;
     color: #fff;
     border: none;
-    padding: 0.5em 1em;
-    margin-left: 1em;
+    padding: 0.6em 1.2em;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
+    font-weight: 500;
+    transition: background 0.3s;
   }
+  
+  .nav-actions button:hover {
+    background: #37a6b2;
+  }
+  
   main {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 2em auto;
     padding: 1em;
   }
+  
   #searchBar {
     margin-bottom: 2em;
     display: flex;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
   }
+  
   #searchInput {
     flex-grow: 1;
-    padding: 0.6em 1em;
+    padding: 0.8em 1em;
     font-size: 1em;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 5px 0 0 5px;
     outline: none;
+    transition: border-color 0.3s;
   }
+  
+  #searchInput:focus {
+    border-color: #20808d;
+  }
+  
   #searchBtn {
-    padding: 0.6em 1em;
+    padding: 0.8em 1.5em;
     background: #20808d;
     border: none;
     color: white;
     cursor: pointer;
     border-radius: 0 5px 5px 0;
     transition: background 0.3s;
+    font-weight: 600;
   }
+  
   #searchBtn:hover {
     background: #37a6b2;
   }
+  
   .deals-section {
-    margin-bottom: 2em;
-    padding: 1em;
+    margin-bottom: 3em;
+    padding: 2em;
     background: #fcfcfd;
-    border-radius: 10px;
-    box-shadow: 0 0 8px #eee;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   }
+  
   .deals-section h2 {
     color: #20808d;
-    margin-bottom: 0.8em;
-  }
-  .deals-grid {
-    display: flex;
-    gap: 2em;
-    flex-wrap: wrap;
-  }
-  .deal-card {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 1em;
-    max-width: 230px;
-    box-shadow: 0 2px 6px #ddd;
-    position: relative;
-    text-align: center;
     margin-bottom: 1em;
-    display: flex;
-    flex-direction: column;
+    font-size: 2em;
+    text-align: center;
   }
-  .deal-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  .deal-price {
-    color: #dc143c;
-    font-size: 1.3em;
-    font-weight: bold;
-  }
-  .old-price {
-    text-decoration: line-through;
-    color: #888;
-    margin-left: 0.5em;
-    font-size: 0.95em;
-  }
-  .badge {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.9em;
-    color: #fff;
-  }
-  .hot-badge {
-    background: #f77f00;
-  }
-  .limited-badge {
-    background: #dc143c;
-  }
-  .countdown {
-    margin-top: 8px;
-    font-size: 1em;
-    font-weight: bold;
-    color: #dc143c;
-  }
-  button {
-    background: #20808d;
-    color: #fff;
-    border: none;
-    padding: 0.5em 1em;
-    margin-top: 0.5em;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-    font-size: 1em;
-  }
-  button:hover {
-    background: #37a6b2;
-  }
+  
   .filter-bar {
-    margin-bottom: 1.5em;
+    margin-bottom: 2em;
     display: flex;
-    gap: 1.2em;
+    gap: 1.5em;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+    padding: 1em;
+    background: #f1f5f9;
+    border-radius: 10px;
   }
+  
   .filter-bar label {
     font-weight: 600;
     color: #555;
     margin-right: 0.5em;
   }
+  
   select,
   input[type='range'] {
-    padding: 0.3em 0.5em;
+    padding: 0.5em;
     border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1em;
   }
+  
+  .deals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2em;
+    padding: 1em 0;
+  }
+  
+  .deal-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5em;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    position: relative;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .deal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+  
+  .deal-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1em;
+  }
+  
+  .deal-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+    color: #333;
+  }
+  
+  .deal-price {
+    color: #dc143c;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+  
+  .old-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-left: 0.5em;
+    font-size: 0.9em;
+  }
+  
+  .badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  .hot-badge {
+    background: linear-gradient(135deg, #f77f00, #ff8c00);
+  }
+  
+  .limited-badge {
+    background: linear-gradient(135deg, #dc143c, #ff1744);
+  }
+  
+  .countdown {
+    margin: 0.5em 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #dc143c;
+    background: #fff0f0;
+    padding: 0.5em;
+    border-radius: 5px;
+  }
+  
+  button {
+    background: linear-gradient(135deg, #20808d, #37a6b2);
+    color: #fff;
+    border: none;
+    padding: 0.8em 1.5em;
+    margin: 0.3em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1em;
+    font-weight: 600;
+  }
+  
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(32,128,141,0.3);
+  }
+  
+  .share-button {
+    background: linear-gradient(135deg, #4a90e2, #5ba0f2);
+    font-size: 0.9em;
+  }
+  
   .reviews {
-    margin-top: 0.8em;
+    margin-top: 1em;
     text-align: left;
   }
+  
   .review-list {
-    max-height: 60px;
+    max-height: 80px;
     overflow-y: auto;
     border-top: 1px solid #ddd;
     margin-top: 0.5em;
+    padding-top: 0.5em;
   }
+  
   .review-item {
     padding: 0.3em 0;
     border-bottom: 1px solid #eee;
     font-size: 0.9em;
+    color: #666;
   }
+  
   .review-form {
-    margin-top: 0.5em;
+    margin-top: 0.8em;
   }
+  
   .review-form textarea {
     width: 100%;
-    height: 40px;
+    height: 60px;
     resize: vertical;
-    padding: 0.3em;
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 0.5em;
   }
-  .share-button {
-    margin-top: 0.5em;
-    background: #4a90e2;
-    font-size: 0.85em;
-  }
+  
   .modal {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.7);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     padding: 1em;
   }
+  
   .modal.active {
     display: flex;
   }
+  
   .modal-content {
     background: white;
-    padding: 2em;
-    border-radius: 10px;
-    max-width: 400px;
+    padding: 2.5em;
+    border-radius: 15px;
+    max-width: 450px;
     width: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
+  
   .modal-content h3 {
     margin-top: 0;
+    margin-bottom: 1.5em;
+    color: #20808d;
+    text-align: center;
   }
+  
   .modal-content form {
     display: flex;
     flex-direction: column;
   }
+  
   .modal-content form label {
-    margin: 0.6em 0 0.2em 0;
+    margin: 0.8em 0 0.3em 0;
+    font-weight: 600;
+    color: #333;
   }
+  
   .modal-content form input,
   .modal-content form select,
   .modal-content form textarea {
-    padding: 0.5em;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    padding: 0.8em;
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+    font-size: 1em;
+    transition: border-color 0.3s;
   }
+  
+  .modal-content form input:focus,
+  .modal-content form select:focus,
+  .modal-content form textarea:focus {
+    outline: none;
+    border-color: #20808d;
+  }
+  
   .modal-content form button {
-    margin-top: 1em;
+    margin-top: 1.5em;
+    padding: 1em;
+    font-size: 1.1em;
   }
+  
   footer#contact-info {
     background: #1c2235;
     color: #fff;
     text-align: center;
-    padding: 2em 1em;
-    margin-top: 2em;
+    padding: 3em 2em;
+    margin-top: 3em;
   }
+  
   footer#contact-info h2 {
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
+    font-size: 2em;
   }
+  
   footer#contact-info form {
     max-width: 500px;
-    margin: auto;
+    margin: 2em auto 0;
     display: flex;
     flex-direction: column;
-    gap: 0.8em;
+    gap: 1em;
   }
+  
   footer #contact-info form textarea,
   footer #contact-info form input {
-    padding: 0.6em;
-    border-radius: 5px;
+    padding: 1em;
+    border-radius: 8px;
     border: none;
     font-size: 1em;
+    background: #f8f9fa;
+    color: #333;
   }
+  
   footer #contact-info form button {
-    background-color: #20808d;
+    background: linear-gradient(135deg, #20808d, #37a6b2);
     border: none;
     color: #fff;
-    padding: 0.8em;
+    padding: 1em;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 1.1em;
     font-weight: 600;
-    transition: background-color 0.3s;
+    margin-top: 1em;
   }
-  footer #contact-info form button:hover {
-    background-color: #37a6b2;
-  }
+  
   @media (max-width: 768px) {
     .deals-grid {
+      grid-template-columns: 1fr;
+    }
+    .filter-bar {
       flex-direction: column;
+      gap: 1em;
     }
   }
 </style>
@@ -336,24 +463,25 @@
 <header>
   <h1>Slash</h1>
   <nav id="navbar">
+    <a href="#home" class="nav-link" onclick="showAllSections()">Home</a>
     <a href="#hot-deals" class="nav-link">Hot Deals</a>
     <a href="#limited-deals" class="nav-link">Limited Deals</a>
     <a href="#additional-products" class="nav-link">More Products</a>
     <a href="#contact-info" class="nav-link">Contact</a>
   </nav>
-  <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+  <div class="hamburger" id="hamburger">
     <div></div><div></div><div></div>
   </div>
   <div class="nav-actions">
-    <button id="cartBtn">Cart <span id="cartCount">0</span></button>
-    <button id="adminBtn">Admin</button>
+    <button id="cartBtn">🛒 Cart <span id="cartCount">0</span></button>
+    <button id="adminBtn">👤 Admin</button>
   </div>
 </header>
 
 <main>
   <div id="searchBar">
-    <input type="search" id="searchInput" placeholder="Search products..." aria-label="Search products" />
-    <button id="searchBtn" aria-label="Search">Search</button>
+    <input type="search" id="searchInput" placeholder="Search products..." />
+    <button id="searchBtn">🔍 Search</button>
   </div>
 
   <section id="searchResults" class="deals-section" style="display:none;">
@@ -362,11 +490,11 @@
   </section>
 
   <section id="hot-deals" class="deals-section">
-    <h2>Hot Deals</h2>
+    <h2>🔥 Hot Deals</h2>
     <div class="filter-bar">
       <label for="hotCategoryFilter">Category:</label>
       <select id="hotCategoryFilter">
-        <option value="all">All</option>
+        <option value="all">All Categories</option>
         <option value="Electronics">Electronics</option>
         <option value="Health & Beauty">Health & Beauty</option>
         <option value="Home & Garden">Home & Garden</option>
@@ -383,11 +511,11 @@
   </section>
 
   <section id="limited-deals" class="deals-section">
-    <h2>Limited Deals</h2>
+    <h2>⏰ Limited Deals</h2>
     <div class="filter-bar">
       <label for="limitedCategoryFilter">Category:</label>
       <select id="limitedCategoryFilter">
-        <option value="all">All</option>
+        <option value="all">All Categories</option>
         <option value="Electronics">Electronics</option>
         <option value="Health & Beauty">Health & Beauty</option>
         <option value="Home & Garden">Home & Garden</option>
@@ -404,11 +532,11 @@
   </section>
 
   <section id="additional-products" class="deals-section">
-    <h2>Other Products</h2>
+    <h2>🛍️ More Products</h2>
     <div class="filter-bar">
       <label for="additionalCategoryFilter">Category:</label>
       <select id="additionalCategoryFilter">
-        <option value="all">All</option>
+        <option value="all">All Categories</option>
         <option value="Fashion">Fashion</option>
         <option value="Gaming">Gaming</option>
         <option value="Gadgets">Gadgets</option>
@@ -422,98 +550,129 @@
   </section>
 </main>
 
-<div class="modal" id="purchaseModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+<!-- Purchase Modal -->
+<div class="modal" id="purchaseModal">
   <div class="modal-content">
-    <h3 id="modalTitle">Checkout - Step 1: Shipping Address</h3>
+    <h3>🚚 Shipping Address</h3>
     <form id="addressForm">
       <label for="nameInput">Full Name *</label>
-      <input type="text" id="nameInput" name="nameInput" required />
+      <input type="text" id="nameInput" required />
       <label for="emailInput">Email *</label>
-      <input type="email" id="emailInput" name="emailInput" required />
+      <input type="email" id="emailInput" required />
       <label for="addressInput">Address *</label>
-      <textarea id="addressInput" name="addressInput" rows="3" required></textarea>
+      <textarea id="addressInput" rows="3" required></textarea>
       <label for="cityInput">City *</label>
-      <input type="text" id="cityInput" name="cityInput" required />
+      <input type="text" id="cityInput" required />
       <label for="stateInput">State *</label>
-      <input type="text" id="stateInput" name="stateInput" required />
+      <input type="text" id="stateInput" required />
       <label for="zipInput">Zip Code *</label>
-      <input type="text" id="zipInput" name="zipInput" required />
-      <button type="submit">Next: Payment</button>
+      <input type="text" id="zipInput" required />
+      <button type="submit">Next: Payment →</button>
     </form>
   </div>
 </div>
 
-<div class="modal" id="paymentModal" aria-hidden="true" role="dialog" aria-labelledby="paymentTitle" aria-modal="true">
+<!-- Payment Modal -->
+<div class="modal" id="paymentModal">
   <div class="modal-content">
-    <h3 id="paymentTitle">Checkout - Step 2: Payment</h3>
+    <h3>💳 Payment Method</h3>
     <form id="paymentForm">
-      <label>Payment Method *</label>
+      <label>Select Payment Method *</label>
       <select id="paymentMethod" required>
-        <option value="" disabled selected>Select payment method</option>
-        <option value="cod">Cash On Delivery</option>
-        <option value="upi">UPI Payment</option>
-        <option value="card">Card Payment</option>
+        <option value="">Choose payment method</option>
+        <option value="cod">💰 Cash On Delivery</option>
+        <option value="upi">📱 UPI Payment</option>
+        <option value="card">💳 Card Payment</option>
       </select>
       <div id="cardDetails" style="display:none; margin-top:1em;">
         <label for="cardNumber">Card Number *</label>
-        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" />
+        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="16" />
         <label for="expiryDate">Expiry Date *</label>
         <input type="month" id="expiryDate" />
         <label for="cvv">CVV *</label>
         <input type="password" id="cvv" maxlength="3" />
       </div>
-      <button type="submit">Place Order</button>
+      <button type="submit">🎉 Place Order</button>
     </form>
   </div>
 </div>
 
+<!-- Contact Section -->
 <footer id="contact-info">
-  <h2>Contact Us</h2>
+  <h2>📞 Contact Us</h2>
   <p>© 2025 SLASH. All rights reserved.</p>
-  <address>
-    Email: support@slashstore.com<br />
-    Phone: +1 (555) 123-4567<br />
-    Address: 123 Slash St, Commerce City, USA
+  <address style="font-style: normal; margin: 1em 0;">
+    📧 Email: support@slashstore.com<br />
+    📱 Phone: +1 (555) 123-4567<br />
+    📍 Address: 123 Slash St, Commerce City, USA
   </address>
-  <form id="contactForm" aria-label="Customer contact and feedback form">
-    <label for="contactName">Full Name *</label>
-    <input type="text" id="contactName" name="contactName" required />
-    <label for="contactEmail">Email *</label>
-    <input type="email" id="contactEmail" name="contactEmail" required />
-    <label for="contactMessage">Your Message *</label>
-    <textarea id="contactMessage" name="contactMessage" rows="4" required></textarea>
+  <form id="contactForm">
+    <input type="text" placeholder="Your Name *" required />
+    <input type="email" placeholder="Your Email *" required />
+    <textarea rows="4" placeholder="Your Message *" required></textarea>
     <button type="submit">Send Message</button>
   </form>
 </footer>
 
 <script>
+  // Mobile menu toggle
   const hamburger = document.getElementById('hamburger');
   const navbar = document.getElementById('navbar');
   hamburger.addEventListener('click', () => navbar.classList.toggle('show'));
 
+  // Product database with all categories
   const products = [
     // Hot Deals (5 products)
-    { id: 1, name: "Wireless Headphones", price: 59.99, oldPrice: 79.99, stock: 23, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop", category: "Electronics", dealType: "hot", reviews: [] },
-    { id: 2, name: "Smartwatch Pro", price: 169.99, oldPrice: 199.99, stock: 10, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop", category: "Electronics", dealType: "hot", reviews: [] },
-    { id: 11, name: "Gaming Headset", price: 89.99, oldPrice: 120.00, stock: 18, image: "https://images.unsplash.com/photo-1590080877777-dfe059c31831?w=500&h=500&fit=crop", category: "Gaming", dealType: "hot", reviews: [] },
-    { id: 13, name: "Leather Bag Classic", price: 150.00, oldPrice: 180.00, stock: 12, image: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=500&h=500&fit=crop", category: "Bags", dealType: "hot", reviews: [] },
-    { id: 14, name: "Pet Feeding Station", price: 45.00, oldPrice: 60.00, stock: 15, image: "https://images.unsplash.com/photo-1503602642458-232111445657?w=500&h=500&fit=crop", category: "Pets", dealType: "hot", reviews: [] },
+    { id: 1, name: "Wireless Bluetooth Headphones", price: 59.99, oldPrice: 79.99, stock: 25, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop", category: "Electronics", dealType: "hot", reviews: ["Great sound quality!", "Perfect for workouts"] },
+    { id: 2, name: "Smartwatch Pro", price: 169.99, oldPrice: 199.99, stock: 15, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop", category: "Electronics", dealType: "hot", reviews: ["Love the fitness tracking"] },
+    { id: 3, name: "Gaming Headset RGB", price: 89.99, oldPrice: 120.00, stock: 18, image: "https://images.unsplash.com/photo-1590080877777-dfe059c31831?w=500&h=500&fit=crop", category: "Gaming", dealType: "hot", reviews: ["Amazing for gaming sessions"] },
+    { id: 4, name: "Leather Bag Classic", price: 150.00, oldPrice: 180.00, stock: 12, image: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=500&h=500&fit=crop", category: "Bags", dealType: "hot", reviews: ["Premium quality leather"] },
+    { id: 5, name: "Pet Feeding Station", price: 45.00, oldPrice: 60.00, stock: 20, image: "https://images.unsplash.com/photo-1503602642458-232111445657?w=500&h=500&fit=crop", category: "Pets", dealType: "hot", reviews: ["My dog loves it!"] },
 
     // Limited Deals (5 products)
-    { id: 3, name: "Skincare Set", price: 69.99, oldPrice: 89.99, stock: 20, image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&h=500&fit=crop", category: "Health & Beauty", dealType: "limited", countdownId: "countdown1", countdownDuration: 10800, reviews: [] },
-    { id: 4, name: "Eco Bottle", price: 19.99, oldPrice: 24.99, stock: 30, image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop", category: "Home & Garden", dealType: "limited", countdownId: "countdown2", countdownDuration: 4815, reviews: [] },
-    { id: 12, name: "Pet Food Premium", price: 35.99, oldPrice: 45.99, stock: 40, image: "https://images.unsplash.com/photo-1503602642458-232111445657?w=500&h=500&fit=crop", category: "Pets", dealType: "limited", countdownId: "countdown3", countdownDuration: 7200, reviews: [] },
-    { id: 15, name: "Designer Dress", price: 120.00, oldPrice: 150.00, stock: 18, image: "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=500&h=500&fit=crop", category: "Fashion", dealType: "limited", countdownId: "countdown4", countdownDuration: 9600, reviews: [] },
-    { id: 16, name: "Smart Speaker", price: 99.99, oldPrice: 130.00, stock: 20, image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=500&h=500&fit=crop", category: "Gadgets", dealType: "limited", countdownId: "countdown5", countdownDuration: 10800, reviews: [] },
+    { id: 11, name: "Premium Skincare Set", price: 69.99, oldPrice: 89.99, stock: 25, image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&h=500&fit=crop", category: "Health & Beauty", dealType: "limited", countdownId: "countdown1", countdownDuration: 10800, reviews: ["Glowing skin results"] },
+    { id: 12, name: "Eco Water Bottle", price: 19.99, oldPrice: 24.99, stock: 30, image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop", category: "Home & Garden", dealType: "limited", countdownId: "countdown2", countdownDuration: 7200, reviews: ["Keeps water cold all day"] },
+    { id: 13, name: "Pet Food Premium", price: 35.99, oldPrice: 45.99, stock: 35, image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=500&h=500&fit=crop", category: "Pets", dealType: "limited", countdownId: "countdown3", countdownDuration: 9600, reviews: ["Healthy nutrition for pets"] },
+    { id: 14, name: "Designer Dress", price: 120.00, oldPrice: 150.00, stock: 15, image: "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=500&h=500&fit=crop", category: "Fashion", dealType: "limited", countdownId: "countdown4", countdownDuration: 14400, reviews: ["Perfect fit and style"] },
+    { id: 15, name: "Smart Speaker", price: 99.99, oldPrice: 130.00, stock: 22, image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=500&h=500&fit=crop", category: "Gadgets", dealType: "limited", countdownId: "countdown5", countdownDuration: 18000, reviews: ["Great voice recognition"] },
 
-    // Additional Products - Bags (5 products with different images)
-    { id: 21, name: "Classic Backpack", price: 90.00, oldPrice: 115.00, stock: 20, image: "https://images.unsplash.com/photo-1520944619102782-c8c9991e7b6e?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] },
-    { id: 22, name: "Travel Duffel", price: 110.00, oldPrice: 135.00, stock: 18, image: "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] },
-    { id: 23, name: "Elegant Tote", price: 75.00, oldPrice: 95.00, stock: 25, image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] },
-    { id: 24, name: "Canvas Messenger", price: 60.00, oldPrice: 85.00, stock: 30, image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] },
-    { id: 25, name: "Designer Handbag", price: 180.00, oldPrice: 220.00, stock: 12, image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] }
+    // Additional Products - Bags (5 products)
+    { id: 21, name: "Travel Backpack", price: 90.00, oldPrice: 115.00, stock: 18, image: "https://images.unsplash.com/photo-1520944619102782-c8c9991e7b6e?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: ["Perfect for travels"] },
+    { id: 22, name: "Professional Briefcase", price: 110.00, oldPrice: 135.00, stock: 12, image: "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: ["Very professional look"] },
+    { id: 23, name: "Elegant Tote Bag", price: 75.00, oldPrice: 95.00, stock: 25, image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: ["Spacious and stylish"] },
+    { id: 24, name: "Canvas Messenger Bag", price: 60.00, oldPrice: 85.00, stock: 20, image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: ["Durable and practical"] },
+    { id: 25, name: "Designer Handbag", price: 180.00, oldPrice: 220.00, stock: 8, image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: ["Luxury quality"] },
+
+    // Fashion (5 products)
+    { id: 31, name: "Casual T-Shirt", price: 25.99, oldPrice: 35.00, stock: 50, image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop", category: "Fashion", dealType: "additional", reviews: ["Comfortable fabric"] },
+    { id: 32, name: "Denim Jeans", price: 79.99, oldPrice: 99.99, stock: 30, image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&h=500&fit=crop", category: "Fashion", dealType: "additional", reviews: ["Perfect fit"] },
+    { id: 33, name: "Summer Dress", price: 65.00, oldPrice: 85.00, stock: 22, image: "https://images.unsplash.com/photo-1495121605193-b116b5b49a7a?w=500&h=500&fit=crop", category: "Fashion", dealType: "additional", reviews: ["Beautiful design"] },
+    { id: 34, name: "Winter Jacket", price: 149.99, oldPrice: 189.99, stock: 15, image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&h=500&fit=crop", category: "Fashion", dealType: "additional", reviews: ["Very warm"] },
+    { id: 35, name: "Sports Shoes", price: 89.99, oldPrice: 119.99, stock: 35, image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&h=500&fit=crop", category: "Fashion", dealType: "additional", reviews: ["Great for running"] },
+
+    // Gaming (5 products)
+    { id: 41, name: "Mechanical Keyboard", price: 120.00, oldPrice: 150.00, stock: 25, image: "https://images.unsplash.com/photo-1533227268428-f38a9c9a5057?w=500&h=500&fit=crop", category: "Gaming", dealType: "additional", reviews: ["Perfect for gaming"] },
+    { id: 42, name: "Gaming Mouse", price: 45.00, oldPrice: 60.00, stock: 40, image: "https://images.unsplash.com/photo-1527814050087-3793815479db?w=500&h=500&fit=crop", category: "Gaming", dealType: "additional", reviews: ["Very responsive"] },
+    { id: 43, name: "Gaming Chair", price: 299.99, oldPrice: 399.99, stock: 10, image: "https://images.unsplash.com/photo-1555617117-08c3f8d4a69c?w=500&h=500&fit=crop", category: "Gaming", dealType: "additional", reviews: ["Super comfortable"] },
+    { id: 44, name: "VR Headset", price: 350.00, oldPrice: 450.00, stock: 8, image: "https://images.unsplash.com/photo-1588167103122-55a6c76dad2a?w=500&h=500&fit=crop", category: "Gaming", dealType: "additional", reviews: ["Amazing VR experience"] },
+    { id: 45, name: "Gaming Monitor", price: 280.00, oldPrice: 350.00, stock: 12, image: "https://images.unsplash.com/photo-1560844106-c7de3ab2e8b6?w=500&h=500&fit=crop", category: "Gaming", dealType: "additional", reviews: ["Crystal clear display"] },
+
+    // Gadgets (5 products)
+    { id: 51, name: "Wireless Charger", price: 35.00, oldPrice: 50.00, stock: 45, image: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=500&h=500&fit=crop", category: "Gadgets", dealType: "additional", reviews: ["Convenient charging"] },
+    { id: 52, name: "Bluetooth Speaker", price: 60.00, oldPrice: 80.00, stock: 30, image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=500&fit=crop", category: "Gadgets", dealType: "additional", reviews: ["Great sound quality"] },
+    { id: 53, name: "Power Bank", price: 40.00, oldPrice: 55.00, stock: 50, image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&h=500&fit=crop", category: "Gadgets", dealType: "additional", reviews: ["Long lasting battery"] },
+    { id: 54, name: "Fitness Tracker", price: 85.00, oldPrice: 110.00, stock: 25, image: "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=500&h=500&fit=crop", category: "Gadgets", dealType: "additional", reviews: ["Accurate fitness tracking"] },
+    { id: 55, name: "Wireless Earbuds", price: 75.00, oldPrice: 95.00, stock: 35, image: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=500&h=500&fit=crop", category: "Gadgets", dealType: "additional", reviews: ["Perfect fit"] },
+
+    // Pets (5 products)
+    { id: 61, name: "Pet Toy Bundle", price: 29.99, oldPrice: 39.99, stock: 40, image: "https://images.unsplash.com/photo-1596495578060-c9bf675b648a?w=500&h=500&fit=crop", category: "Pets", dealType: "additional", reviews: ["Dogs love these toys"] },
+    { id: 62, name: "Cat Bed Deluxe", price: 55.00, oldPrice: 75.00, stock: 20, image: "https://images.unsplash.com/photo-1558788353-f76d92427f16?w=500&h=500&fit=crop", category: "Pets", dealType: "additional", reviews: ["Very comfortable for cats"] },
+    { id: 63, name: "Dog Leash Premium", price: 25.00, oldPrice: 35.00, stock: 30, image: "https://images.unsplash.com/photo-1507149833265-60c372daea22?w=500&h=500&fit=crop", category: "Pets", dealType: "additional", reviews: ["Strong and durable"] },
+    { id: 64, name: "Pet Grooming Kit", price: 45.00, oldPrice: 60.00, stock: 25, image: "https://images.unsplash.com/photo-1560807707-8cc77767d783?w=500&h=500&fit=crop", category: "Pets", dealType: "additional", reviews: ["Everything needed for grooming"] },
+    { id: 65, name: "Bird Cage Large", price: 120.00, oldPrice: 150.00, stock: 8, image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500&h=500&fit=crop", category: "Pets", dealType: "additional", reviews: ["Spacious and well-made"] }
   ];
 
+  // Cart functionality
   let cartCount = 0;
   let currentPurchaseProduct = null;
 
@@ -521,11 +680,11 @@
     cartCount++;
     document.getElementById("cartCount").textContent = cartCount;
     const product = products.find(p => p.id === itemId);
-    alert("Added to cart: " + product.name);
     currentPurchaseProduct = product;
     openAddressModal();
   }
 
+  // Rendering functions
   function renderSection(filterDealType, gridId, categoryFilterId, priceFilterId, priceValueId) {
     const grid = document.getElementById(gridId);
     const category = document.getElementById(categoryFilterId).value;
@@ -534,34 +693,33 @@
     document.getElementById(priceValueId).textContent = maxPrice.toFixed(0);
     grid.innerHTML = "";
     
-    let count = 0;
-    products.forEach(product => {
-      if (
-        product.dealType === filterDealType &&
-        (category === "all" || product.category === category) &&
-        product.price <= maxPrice
-      ) {
-        const card = createProductCard(product);
-        if (product.dealType === "limited" && product.countdownId) {
-          const countdownDiv = document.createElement("div");
-          countdownDiv.className = "countdown";
-          countdownDiv.id = product.countdownId;
-          countdownDiv.textContent = "00:00:00";
-          card.appendChild(countdownDiv);
-        }
-        grid.appendChild(card);
-        count++;
-      }
+    const filteredProducts = products.filter(product => {
+      return product.dealType === filterDealType &&
+             (category === "all" || product.category === category) &&
+             product.price <= maxPrice;
     });
-    
-    console.log(`Rendered ${count} products for ${filterDealType} section`);
+
+    filteredProducts.forEach(product => {
+      const card = createProductCard(product);
+      grid.appendChild(card);
+    });
+
+    // Initialize countdowns for limited deals
+    if (filterDealType === "limited") {
+      setTimeout(() => {
+        products.filter(p => p.dealType === "limited").forEach(product => {
+          if (product.countdownId && product.countdownDuration) {
+            startCountdown(product.countdownId, product.countdownDuration);
+          }
+        });
+      }, 100);
+    }
   }
 
   function renderAllSections() {
     renderSection("hot", "hotDealsGrid", "hotCategoryFilter", "hotPriceFilter", "hotPriceValue");
     renderSection("limited", "limitedDealsGrid", "limitedCategoryFilter", "limitedPriceFilter", "limitedPriceValue");
     renderSection("additional", "additionalProductsGrid", "additionalCategoryFilter", "additionalPriceFilter", "additionalPriceValue");
-    initCountdowns();
   }
 
   function createProductCard(product) {
@@ -569,32 +727,40 @@
     card.className = "deal-card";
     
     let badgeHtml = "";
+    let countdownHtml = "";
+    
     if (product.dealType === "hot") {
-      badgeHtml = '<span class="badge hot-badge">Hot Deal!</span>';
+      badgeHtml = '<span class="badge hot-badge">🔥 Hot Deal!</span>';
     } else if (product.dealType === "limited") {
-      badgeHtml = '<span class="badge limited-badge">Limited Time!</span>';
+      badgeHtml = '<span class="badge limited-badge">⏰ Limited Time!</span>';
+      if (product.countdownId) {
+        countdownHtml = `<div class="countdown" id="${product.countdownId}">00:00:00</div>`;
+      }
     }
     
     card.innerHTML = `
       ${badgeHtml}
-      <img src="${product.image}" alt="${product.name}" />
+      <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'" />
       <h3>${product.name}</h3>
       <p class="deal-price">$${product.price.toFixed(2)} <span class="old-price">$${product.oldPrice.toFixed(2)}</span></p>
-      <button onclick="addToCart(${product.id})">Buy Now</button>
-      <button class="share-button" onclick="shareProduct('${encodeURIComponent(product.name)}')">Share</button>
+      ${countdownHtml}
+      <button onclick="addToCart(${product.id})" style="background: linear-gradient(135deg, #28a745, #20c997);">🛒 Buy Now</button>
+      <button class="share-button" onclick="shareProduct('${encodeURIComponent(product.name)}')">📤 Share</button>
       <div class="reviews">
-        <strong>Reviews:</strong>
+        <strong>⭐ Reviews:</strong>
         <div class="review-list" id="review-list-${product.id}"></div>
         <form class="review-form" onsubmit="submitReview(event, ${product.id})">
           <textarea required placeholder="Write your review..."></textarea>
-          <button type="submit">Submit Review</button>
+          <button type="submit" style="font-size: 0.9em; padding: 0.5em;">✍️ Submit Review</button>
         </form>
       </div>
     `;
-    displayReviews(product.id);
+    
+    setTimeout(() => displayReviews(product.id), 50);
     return card;
   }
 
+  // Review functionality
   function displayReviews(productId) {
     const product = products.find(p => p.id === productId);
     const reviewList = document.getElementById(`review-list-${productId}`);
@@ -602,13 +768,13 @@
     
     reviewList.innerHTML = "";
     if (product.reviews.length === 0) {
-      reviewList.textContent = "No reviews yet.";
+      reviewList.textContent = "No reviews yet. Be the first!";
       return;
     }
     product.reviews.forEach(review => {
       const div = document.createElement("div");
       div.className = "review-item";
-      div.textContent = review;
+      div.textContent = `"${review}"`;
       reviewList.appendChild(div);
     });
   }
@@ -622,19 +788,27 @@
       product.reviews.push(reviewText);
       displayReviews(productId);
       form.reset();
+      alert("Thank you for your review! 🌟");
     }
   }
 
+  // Share functionality
   function shareProduct(productName) {
     const shareData = {
-      title: "Slash Store Product",
-      text: "Check out this product: " + decodeURIComponent(productName),
+      title: "🛍️ Slash Store Product",
+      text: `Check out this amazing product: ${decodeURIComponent(productName)} from Slash Store!`,
       url: window.location.href
     };
     if (navigator.share) {
-      navigator.share(shareData).catch(err => alert("Error sharing: " + err));
+      navigator.share(shareData).catch(err => console.log('Error sharing:', err));
     } else {
-      alert("Share this product link: " + window.location.href);
+      const message = `Check out this product: ${decodeURIComponent(productName)} at ${window.location.href}`;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(message);
+        alert("📋 Product link copied to clipboard!");
+      } else {
+        alert(`📤 Share this link: ${window.location.href}`);
+      }
     }
   }
 
@@ -643,27 +817,37 @@
   const searchResultsSection = document.getElementById("searchResults");
   const searchResultsGrid = document.getElementById("searchResultsGrid");
 
-  document.getElementById("searchBtn").addEventListener("click", () => {
+  document.getElementById("searchBtn").addEventListener("click", performSearch);
+  searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") performSearch();
+  });
+
+  function performSearch() {
     const query = searchInput.value.trim().toLowerCase();
     if (!query) {
       searchResultsSection.style.display = "none";
       return;
     }
-    const matchedProducts = products.filter(p => p.name.toLowerCase().includes(query));
+    
+    const matchedProducts = products.filter(p => 
+      p.name.toLowerCase().includes(query) || 
+      p.category.toLowerCase().includes(query)
+    );
+    
     renderSearchResults(matchedProducts);
-  });
+  }
 
   function renderSearchResults(results) {
     searchResultsGrid.innerHTML = "";
     if (results.length === 0) {
-      searchResultsGrid.innerHTML = "<p>No products matched your search.</p>";
+      searchResultsGrid.innerHTML = "<p style='text-align: center; padding: 2em; font-size: 1.2em; color: #666;'>😔 No products found. Try a different search term!</p>";
     } else {
       results.forEach(product => {
         searchResultsGrid.appendChild(createProductCard(product));
       });
     }
     searchResultsSection.style.display = "block";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.getElementById("searchResults").scrollIntoView({ behavior: "smooth" });
   }
 
   // Modal functionality
@@ -677,51 +861,78 @@
     paymentForm.reset();
     paymentModal.classList.remove("active");
     purchaseModal.classList.add("active");
-    purchaseModal.setAttribute("aria-hidden", "false");
   }
 
   function openPaymentModal() {
     purchaseModal.classList.remove("active");
     paymentModal.classList.add("active");
-    paymentModal.setAttribute("aria-hidden", "false");
   }
 
-  function closePaymentModal() {
+  function closeAllModals() {
+    purchaseModal.classList.remove("active");
     paymentModal.classList.remove("active");
-    paymentModal.setAttribute("aria-hidden", "true");
   }
 
-  addressForm.addEventListener("submit", e => {
+  // Click outside modal to close
+  window.addEventListener('click', (e) => {
+    if (e.target === purchaseModal || e.target === paymentModal) {
+      closeAllModals();
+    }
+  });
+
+  addressForm.addEventListener("submit", (e) => {
     e.preventDefault();
     openPaymentModal();
   });
 
   const paymentMethodSelect = document.getElementById("paymentMethod");
   const cardDetailsDiv = document.getElementById("cardDetails");
-  paymentMethodSelect.addEventListener("change", e => {
+
+  paymentMethodSelect.addEventListener("change", (e) => {
     cardDetailsDiv.style.display = e.target.value === "card" ? "block" : "none";
   });
 
-  paymentForm.addEventListener("submit", e => {
+  paymentForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const paymentMethod = paymentMethodSelect.value;
+    
     if (!paymentMethod) {
-      alert("Please select a payment method.");
+      alert("Please select a payment method!");
       return;
     }
-    alert("Order placed successfully! Thank you for shopping with Slash.");
-    closePaymentModal();
+
+    if (paymentMethod === "card") {
+      const cardNumber = document.getElementById("cardNumber").value.trim();
+      const expiryDate = document.getElementById("expiryDate").value.trim();
+      const cvv = document.getElementById("cvv").value.trim();
+      
+      if (cardNumber.length !== 16 || !/^\d{16}$/.test(cardNumber)) {
+        alert("Please enter a valid 16-digit card number.");
+        return;
+      }
+      if (!expiryDate) {
+        alert("Please enter the card expiry date.");
+        return;
+      }
+      if (cvv.length !== 3 || !/^\d{3}$/.test(cvv)) {
+        alert("Please enter a valid 3-digit CVV.");
+        return;
+      }
+    }
+
+    alert(`🎉 Order placed successfully!\n\nProduct: ${currentPurchaseProduct.name}\nPayment: ${paymentMethod.toUpperCase()}\n\nThank you for shopping with Slash! 🛍️`);
+    closeAllModals();
   });
 
   // Contact form
   const contactForm = document.getElementById("contactForm");
-  contactForm.addEventListener("submit", e => {
+  contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    alert("Thank you for contacting us! We will get back to you shortly.");
+    alert("📧 Thank you for contacting us! We'll get back to you within 24 hours. 🕐");
     contactForm.reset();
   });
 
-  // Countdown timer
+  // Countdown timer for limited deals
   function startCountdown(elementId, duration) {
     const countdownEl = document.getElementById(elementId);
     if (!countdownEl) return;
@@ -732,22 +943,15 @@
       const minutes = Math.floor((timer % 3600) / 60);
       const seconds = timer % 60;
 
-      countdownEl.textContent =
-        `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+      countdownEl.textContent = `⏰ ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
       
       if (--timer < 0) {
         clearInterval(interval);
-        countdownEl.textContent = "Deal expired";
+        countdownEl.textContent = "⚠️ Deal Expired!";
+        countdownEl.style.background = "#ffebee";
+        countdownEl.style.color = "#c62828";
       }
     }, 1000);
-  }
-
-  function initCountdowns() {
-    products.forEach((product) => {
-      if (product.dealType === "limited" && product.countdownId && product.countdownDuration) {
-        startCountdown(product.countdownId, product.countdownDuration);
-      }
-    });
   }
 
   // Filter event listeners
@@ -758,9 +962,24 @@
   document.getElementById("additionalCategoryFilter").addEventListener("change", renderAllSections);
   document.getElementById("additionalPriceFilter").addEventListener("input", renderAllSections);
 
-  // Initial render
-  console.log("Starting initial render...");
-  console.log("Total products:", products.length);
+  function showAllSections() {
+    document.getElementById("searchResults").style.display = "none";
+    document.getElementById("hot-deals").style.display = "block";
+    document.getElementById("limited-deals").style.display = "block";
+    document.getElementById("additional-products").style.display = "block";
+  }
+
+  // Initialize the page
+  console.log("🚀 Initializing Slash Store...");
+  console.log(`📦 Total products loaded: ${products.length}`);
+  
+  // Load products on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    renderAllSections();
+    console.log("✅ All sections rendered successfully!");
+  });
+
+  // Also render immediately
   renderAllSections();
 </script>
 </body>
