@@ -146,6 +146,8 @@
   }
   .deal-card img {
     width: 100%;
+    height: 200px;
+    object-fit: cover;
     border-radius: 8px;
   }
   .deal-price {
@@ -218,7 +220,7 @@
     text-align: left;
   }
   .review-list {
-    max-height: 100px;
+    max-height: 60px;
     overflow-y: auto;
     border-top: 1px solid #ddd;
     margin-top: 0.5em;
@@ -233,7 +235,7 @@
   }
   .review-form textarea {
     width: 100%;
-    height: 50px;
+    height: 40px;
     resize: vertical;
     padding: 0.3em;
   }
@@ -374,8 +376,8 @@
         <option value="Bags">Bags</option>
         <option value="Gadgets">Gadgets</option>
       </select>
-      <label for="hotPriceFilter">Max Price: $<span id="hotPriceValue">200</span></label>
-      <input type="range" id="hotPriceFilter" min="1" max="200" value="200" step="1" />
+      <label for="hotPriceFilter">Max Price: $<span id="hotPriceValue">500</span></label>
+      <input type="range" id="hotPriceFilter" min="1" max="500" value="500" step="1" />
     </div>
     <div class="deals-grid" id="hotDealsGrid"></div>
   </section>
@@ -395,8 +397,8 @@
         <option value="Bags">Bags</option>
         <option value="Gadgets">Gadgets</option>
       </select>
-      <label for="limitedPriceFilter">Max Price: $<span id="limitedPriceValue">200</span></label>
-      <input type="range" id="limitedPriceFilter" min="1" max="200" value="200" step="1" />
+      <label for="limitedPriceFilter">Max Price: $<span id="limitedPriceValue">500</span></label>
+      <input type="range" id="limitedPriceFilter" min="1" max="500" value="500" step="1" />
     </div>
     <div class="deals-grid" id="limitedDealsGrid"></div>
   </section>
@@ -413,8 +415,8 @@
         <option value="Bags">Bags</option>
         <option value="Pets">Pets</option>
       </select>
-      <label for="additionalPriceFilter">Max Price: $<span id="additionalPriceValue">200</span></label>
-      <input type="range" id="additionalPriceFilter" min="1" max="200" value="200" step="1" />
+      <label for="additionalPriceFilter">Max Price: $<span id="additionalPriceValue">500</span></label>
+      <input type="range" id="additionalPriceFilter" min="1" max="500" value="500" step="1" />
     </div>
     <div class="deals-grid" id="additionalProductsGrid"></div>
   </section>
@@ -454,11 +456,11 @@
       </select>
       <div id="cardDetails" style="display:none; margin-top:1em;">
         <label for="cardNumber">Card Number *</label>
-        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" pattern="\\d{16}" />
+        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" />
         <label for="expiryDate">Expiry Date *</label>
         <input type="month" id="expiryDate" />
         <label for="cvv">CVV *</label>
-        <input type="password" id="cvv" maxlength="3" pattern="\\d{3}" />
+        <input type="password" id="cvv" maxlength="3" />
       </div>
       <button type="submit">Place Order</button>
     </form>
@@ -488,9 +490,6 @@
   const hamburger = document.getElementById('hamburger');
   const navbar = document.getElementById('navbar');
   hamburger.addEventListener('click', () => navbar.classList.toggle('show'));
-  hamburger.addEventListener('keypress', e => {
-    if (e.key === 'Enter' || e.key === ' ') navbar.classList.toggle('show');
-  });
 
   const products = [
     // Hot Deals (5 products)
@@ -507,12 +506,12 @@
     { id: 15, name: "Designer Dress", price: 120.00, oldPrice: 150.00, stock: 18, image: "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=500&h=500&fit=crop", category: "Fashion", dealType: "limited", countdownId: "countdown4", countdownDuration: 9600, reviews: [] },
     { id: 16, name: "Smart Speaker", price: 99.99, oldPrice: 130.00, stock: 20, image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=500&h=500&fit=crop", category: "Gadgets", dealType: "limited", countdownId: "countdown5", countdownDuration: 10800, reviews: [] },
 
-    // Additional Products - Bags (5 products)
-    { id: 6, name: "Leather Bag", price: 120.50, oldPrice: 150.00, stock: 15, image: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] },
+    // Additional Products - Bags (5 products with different images)
     { id: 21, name: "Classic Backpack", price: 90.00, oldPrice: 115.00, stock: 20, image: "https://images.unsplash.com/photo-1520944619102782-c8c9991e7b6e?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] },
     { id: 22, name: "Travel Duffel", price: 110.00, oldPrice: 135.00, stock: 18, image: "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] },
     { id: 23, name: "Elegant Tote", price: 75.00, oldPrice: 95.00, stock: 25, image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] },
-    { id: 24, name: "Canvas Messenger", price: 60.00, oldPrice: 85.00, stock: 30, image: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] }
+    { id: 24, name: "Canvas Messenger", price: 60.00, oldPrice: 85.00, stock: 30, image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] },
+    { id: 25, name: "Designer Handbag", price: 180.00, oldPrice: 220.00, stock: 12, image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&h=500&fit=crop", category: "Bags", dealType: "additional", reviews: [] }
   ];
 
   let cartCount = 0;
@@ -531,29 +530,53 @@
     const grid = document.getElementById(gridId);
     const category = document.getElementById(categoryFilterId).value;
     const maxPrice = parseFloat(document.getElementById(priceFilterId).value);
-    document.getElementById(priceValueId).textContent = maxPrice.toFixed(2);
+    
+    document.getElementById(priceValueId).textContent = maxPrice.toFixed(0);
     grid.innerHTML = "";
+    
+    let count = 0;
     products.forEach(product => {
       if (
         product.dealType === filterDealType &&
         (category === "all" || product.category === category) &&
         product.price <= maxPrice
       ) {
-        grid.appendChild(createProductCard(product));
+        const card = createProductCard(product);
+        if (product.dealType === "limited" && product.countdownId) {
+          const countdownDiv = document.createElement("div");
+          countdownDiv.className = "countdown";
+          countdownDiv.id = product.countdownId;
+          countdownDiv.textContent = "00:00:00";
+          card.appendChild(countdownDiv);
+        }
+        grid.appendChild(card);
+        count++;
       }
     });
+    
+    console.log(`Rendered ${count} products for ${filterDealType} section`);
   }
 
   function renderAllSections() {
     renderSection("hot", "hotDealsGrid", "hotCategoryFilter", "hotPriceFilter", "hotPriceValue");
     renderSection("limited", "limitedDealsGrid", "limitedCategoryFilter", "limitedPriceFilter", "limitedPriceValue");
     renderSection("additional", "additionalProductsGrid", "additionalCategoryFilter", "additionalPriceFilter", "additionalPriceValue");
+    initCountdowns();
   }
 
   function createProductCard(product) {
     const card = document.createElement("div");
     card.className = "deal-card";
+    
+    let badgeHtml = "";
+    if (product.dealType === "hot") {
+      badgeHtml = '<span class="badge hot-badge">Hot Deal!</span>';
+    } else if (product.dealType === "limited") {
+      badgeHtml = '<span class="badge limited-badge">Limited Time!</span>';
+    }
+    
     card.innerHTML = `
+      ${badgeHtml}
       <img src="${product.image}" alt="${product.name}" />
       <h3>${product.name}</h3>
       <p class="deal-price">$${product.price.toFixed(2)} <span class="old-price">$${product.oldPrice.toFixed(2)}</span></p>
@@ -575,6 +598,8 @@
   function displayReviews(productId) {
     const product = products.find(p => p.id === productId);
     const reviewList = document.getElementById(`review-list-${productId}`);
+    if (!reviewList) return;
+    
     reviewList.innerHTML = "";
     if (product.reviews.length === 0) {
       reviewList.textContent = "No reviews yet.";
@@ -613,6 +638,7 @@
     }
   }
 
+  // Search functionality
   const searchInput = document.getElementById("searchInput");
   const searchResultsSection = document.getElementById("searchResults");
   const searchResultsGrid = document.getElementById("searchResultsGrid");
@@ -640,6 +666,7 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  // Modal functionality
   const purchaseModal = document.getElementById("purchaseModal");
   const paymentModal = document.getElementById("paymentModal");
   const addressForm = document.getElementById("addressForm");
@@ -652,16 +679,13 @@
     purchaseModal.classList.add("active");
     purchaseModal.setAttribute("aria-hidden", "false");
   }
-  function closeAddressModal() {
-    purchaseModal.classList.remove("active");
-    purchaseModal.setAttribute("aria-hidden", "true");
-  }
+
   function openPaymentModal() {
-    paymentForm.reset();
     purchaseModal.classList.remove("active");
     paymentModal.classList.add("active");
     paymentModal.setAttribute("aria-hidden", "false");
   }
+
   function closePaymentModal() {
     paymentModal.classList.remove("active");
     paymentModal.setAttribute("aria-hidden", "true");
@@ -685,27 +709,11 @@
       alert("Please select a payment method.");
       return;
     }
-    if (paymentMethod === "card") {
-      const cardNumber = document.getElementById("cardNumber").value.trim();
-      const expiryDate = document.getElementById("expiryDate").value.trim();
-      const cvv = document.getElementById("cvv").value.trim();
-      if (cardNumber.length !== 16 || !/^\d{16}$/.test(cardNumber)) {
-        alert("Please enter a valid 16-digit card number.");
-        return;
-      }
-      if (!expiryDate) {
-        alert("Please enter a valid expiry date.");
-        return;
-      }
-      if (cvv.length !== 3 || !/^\d{3}$/.test(cvv)) {
-        alert("Please enter a valid 3-digit CVV.");
-        return;
-      }
-    }
     alert("Order placed successfully! Thank you for shopping with Slash.");
     closePaymentModal();
   });
 
+  // Contact form
   const contactForm = document.getElementById("contactForm");
   contactForm.addEventListener("submit", e => {
     e.preventDefault();
@@ -713,20 +721,20 @@
     contactForm.reset();
   });
 
+  // Countdown timer
   function startCountdown(elementId, duration) {
-    let timer = duration,
-      hours,
-      minutes,
-      seconds;
     const countdownEl = document.getElementById(elementId);
     if (!countdownEl) return;
+    
+    let timer = duration;
     const interval = setInterval(() => {
-      hours = Math.floor(timer / 3600);
-      minutes = Math.floor((timer % 3600) / 60);
-      seconds = timer % 60;
+      const hours = Math.floor(timer / 3600);
+      const minutes = Math.floor((timer % 3600) / 60);
+      const seconds = timer % 60;
 
       countdownEl.textContent =
         `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+      
       if (--timer < 0) {
         clearInterval(interval);
         countdownEl.textContent = "Deal expired";
@@ -742,17 +750,18 @@
     });
   }
 
-  [
-    ["hotCategoryFilter", "hotPriceFilter", "hotDealsGrid", "hotPriceValue", "hot"],
-    ["limitedCategoryFilter", "limitedPriceFilter", "limitedDealsGrid", "limitedPriceValue", "limited"],
-    ["additionalCategoryFilter", "additionalPriceFilter", "additionalProductsGrid", "additionalPriceValue", "additional"],
-  ].forEach(([catId, priceId, gridId, priceValueId, dealType]) => {
-    document.getElementById(catId).addEventListener("change", renderAllSections);
-    document.getElementById(priceId).addEventListener("input", renderAllSections);
-  });
+  // Filter event listeners
+  document.getElementById("hotCategoryFilter").addEventListener("change", renderAllSections);
+  document.getElementById("hotPriceFilter").addEventListener("input", renderAllSections);
+  document.getElementById("limitedCategoryFilter").addEventListener("change", renderAllSections);
+  document.getElementById("limitedPriceFilter").addEventListener("input", renderAllSections);
+  document.getElementById("additionalCategoryFilter").addEventListener("change", renderAllSections);
+  document.getElementById("additionalPriceFilter").addEventListener("input", renderAllSections);
 
+  // Initial render
+  console.log("Starting initial render...");
+  console.log("Total products:", products.length);
   renderAllSections();
-  initCountdowns();
 </script>
 </body>
 </html>
